@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "gWKjnQ4Hb6g=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\akram\\OneDrive\\Desktop\\ITI\\DS\\Day1\\Day1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\akram\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\9.0.11\\microsoft.windowsdesktop.app.ref.9.0.11.nupkg.sha512",
+    "C:\\Users\\akram\\.nuget\\packages\\microsoft.netcore.app.ref\\9.0.11\\microsoft.netcore.app.ref.9.0.11.nupkg.sha512",
+    "C:\\Users\\akram\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\9.0.11\\microsoft.aspnetcore.app.ref.9.0.11.nupkg.sha512",
+    "C:\\Users\\akram\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\9.0.11\\microsoft.netcore.app.host.win-x64.9.0.11.nupkg.sha512"
+  ],
+  "logs": []
+}
