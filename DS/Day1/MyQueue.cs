@@ -14,8 +14,15 @@ namespace Day1
         public void enqueue(T data) => AddLast(data);
         public T Peak() => GetHeadData;
 
-        public void Dequeue() => RemoveFirst(); //FIFO
+        public T Dequeue()
+        {
+            if (IsEmpty())
+                throw new InvalidOperationException("Queue is empty");
 
+            T data = GetHeadData;
+            RemoveFirst();
+            return data;
+        }
         //is empty in the parent class
 
 

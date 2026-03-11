@@ -11,8 +11,13 @@ namespace Day1
     {
         //push(data) , pop(), data peek(), isEmpty()
         public void Push(T data) => AddLast(data);
-        public void Pop() => RemoveLast();
+        public T Pop()
+        {
+            RemoveLast();
+            return GetTailData;
+        }//lifo
         public T Peak => GetTailData;
+        
         
         //is empty in the parent class
 
