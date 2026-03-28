@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>سلة التسوق — A to Z Academy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand-blue: #0075AF;
+      --brand-teal: #06918A;
+      --brand-gold: #FFC200;
+      --brand-dark-gold: #C48700;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Cairo', sans-serif; background: #f1f5f9; min-height: 100vh; }
+
+    .navbar {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,117,175,0.1);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    }
+    .nav-logo { font-family:'Tajawal',sans-serif;font-weight:800;font-size:1.3rem;background:linear-gradient(135deg,#0075AF,#06918A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+
+    .page-header {
+      background: linear-gradient(135deg, #0a1628 0%, #0d2a4a 50%, #0a4a52 100%);
+      padding: 3.5rem 0 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(6,145,138,0.2) 0%, transparent 60%),
+                  radial-gradient(circle at 70% 30%, rgba(0,117,175,0.2) 0%, transparent 50%);
+    }
+
+    /* Cart Item */
+    .cart-item {
+      background: #fff;
+      border-radius: 18px;
+      border: 1px solid #e2e8f0;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .cart-item:hover {
+      box-shadow: 0 8px 30px rgba(0,117,175,0.1);
+      border-color: rgba(0,117,175,0.2);
+    }
+    .cart-item.removing {
+      animation: slideOut 0.4s ease forwards;
+    }
+    @keyframes slideOut {
+      to { opacity: 0; transform: translateX(50px); height: 0; padding: 0; margin: 0; }
+    }
+    .item-emoji {
+      width: 64px; height: 64px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      flex-shrink: 0;
+    }
+    .item-name { font-family:'Tajawal',sans-serif;font-size:1.05rem;font-weight:700;color:#0f172a;margin-bottom:0.3rem; }
+    .item-meta { color:#64748b;font-size:0.8rem; }
+    .item-price { font-family:'Tajawal',sans-serif;font-size:1.15rem;font-weight:800;color:var(--brand-blue);margin-right:auto;flex-shrink:0; }
+    .item-price.discounted { color: #10b981; }
+    .item-price-original { font-size:0.82rem;color:#94a3b8;text-decoration:line-through; }
+    .btn-remove {
+      background: none;
+      border: 2px solid #fee2e2;
+      color: #ef4444;
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .btn-remove:hover { background: #fef2f2; border-color: #ef4444; }
+
+    /* Summary Card */
+    .summary-card {
+      background: #fff;
+      border-radius: 20px;
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+      position: sticky;
+      top: 80px;
+    }
+    .summary-header {
+      background: linear-gradient(135deg, #0075AF, #06918A);
+      padding: 1.25rem 1.5rem;
+      color: #fff;
+    }
+    .summary-body { padding: 1.5rem; }
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+      color: #475569;
+    }
+    .summary-row.total {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #0f172a;
+      border-top: 2px solid #f1f5f9;
+      padding-top: 1rem;
+      margin-top: 0.5rem;
+    }
+    .discount-row {
+      background: linear-gradient(135deg, rgba(16,185,129,0.05), rgba(5,150,105,0.05));
+      border: 1px solid rgba(16,185,129,0.2);
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .btn-checkout {
+      width: 100%;
+      background: linear-gradient(135deg, var(--brand-gold), var(--brand-dark-gold));
+      color: #1a1a1a;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.9rem;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255,194,0,0.35);
+      margin-bottom: 0.75rem;
+    }
+    .btn-checkout:hover { transform:translateY(-2px);box-shadow:0 8px 25px rgba(255,194,0,0.5); }
+
+    .btn-continue {
+      width: 100%;
+      background: transparent;
+      border: 2px solid #e2e8f0;
+      color: #475569;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.8rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-continue:hover { border-color: var(--brand-blue); color: var(--brand-blue); }
+
+    /* Discount badge */
+    .discount-badge {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 50px;
+    }
+
+    /* Empty cart */
+    .empty-cart {
+      text-align: center;
+      padding: 5rem 2rem;
+      background: #fff;
+      border-radius: 20px;
+      border: 1px solid #e2e8f0;
+    }
+
+    /* Soft tag */
+    .soft-tag {
+      background: rgba(255,194,0,0.1);
+      border: 1px solid rgba(255,194,0,0.3);
+      color: var(--brand-dark-gold);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 50px;
+    }
+
+    /* Toast */
+    #toast {
+      position: fixed; top: 24px; right: 24px; z-index: 9999;
+      min-width: 280px; padding: 1rem 1.5rem; border-radius: 14px;
+      font-weight: 600; font-size: 0.9rem; display: none;
+      align-items: center; gap: 0.75rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+    .toast-success { background:#fff;border-right:4px solid #10b981;color:#065f46; }
+    .toast-error { background:#fff;border-right:4px solid #ef4444;color:#991b1b; }
+    .toast-info { background:#fff;border-right:4px solid #0075AF;color:#0075AF; }
+
+    .animate-in { animation: fadeInUp 0.5s ease both; }
+    @keyframes fadeInUp { from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)} }
+  </style>
+</head>
+<body>
+
+<div id="toast"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="index.html" class="flex items-center gap-3">
+        <div style="width:36px;height:36px;background:linear-gradient(135deg,#0075AF,#06918A);border-radius:9px;display:flex;align-items:center;justify-content:center;">
+          <div class="flex items-center gap-3">
+        <img src="assets/logo.png" alt="A to Z Academy Logo" class="w-9 h-9 object-contain">
+        <span class="footer-logo">A to Z Academy</span>
+      </div>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="courses.html" style="color:#475569;font-weight:600;font-size:0.88rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#0075AF'" onmouseout="this.style.color='#475569'">← العودة للكورسات</a>
+        <div id="user-name-display"></div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <div style="width:56px;height:56px;background:rgba(255,194,0,0.15);border:1px solid rgba(255,194,0,0.3);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;">🛒</div>
+      <div>
+        <h1 style="font-family:'Tajawal',sans-serif;font-size:2rem;font-weight:800;color:#fff;margin-bottom:0.25rem;">سلة التسوق</h1>
+        <p style="color:rgba(255,255,255,0.65);font-size:0.9rem;" id="cart-subtitle">جاري التحميل...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+    <!-- Cart Items -->
+    <div class="lg:col-span-2">
+      <div id="cart-items-container"></div>
+    </div>
+
+    <!-- Summary -->
+    <div>
+      <div class="summary-card animate-in">
+        <div class="summary-header">
+          <div style="font-family:'Tajawal',sans-serif;font-size:1.15rem;font-weight:800;margin-bottom:0.25rem;">ملخص الطلب</div>
+          <div style="font-size:0.82rem;opacity:0.8;" id="summary-items-label">...</div>
+        </div>
+        <div class="summary-body">
+          <div id="discount-info" style="display:none;" class="discount-row">
+            <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;">
+              <span style="font-size:1.1rem;">🎁</span>
+              <span style="font-weight:700;font-size:0.88rem;color:#065f46;">خصم Soft Skills مطبَّق!</span>
+              <span class="discount-badge">50% OFF</span>
+            </div>
+            <div style="color:#64748b;font-size:0.8rem;" id="discount-detail"></div>
+          </div>
+
+          <div class="summary-row">
+            <span>إجمالي الكورسات</span>
+            <span id="sub-total" style="font-weight:700;">0 جنيه</span>
+          </div>
+          <div class="summary-row" id="discount-row" style="display:none;color:#10b981;">
+            <span style="font-weight:600;">💚 خصم Soft Skills</span>
+            <span id="discount-amount" style="font-weight:700;">- 0 جنيه</span>
+          </div>
+          <div class="summary-row total">
+            <span>الإجمالي النهائي</span>
+            <span id="grand-total" style="color:#0075AF;">0 جنيه</span>
+          </div>
+
+          <button class="btn-checkout" id="checkout-btn" onclick="handleCheckout()">
+            🎓 إتمام الاشتراك
+          </button>
+          <a href="courses.html">
+            <button class="btn-continue">← إضافة كورسات أخرى</button>
+          </a>
+
+          <!-- Guarantees -->
+          <div style="margin-top:1.25rem;display:flex;flex-direction:column;gap:0.5rem;">
+            <div style="display:flex;align-items:center;gap:0.75rem;color:#64748b;font-size:0.78rem;">
+              <span style="color:#10b981;">✓</span> ضمان استرداد المال خلال 7 أيام
+            </div>
+            <div style="display:flex;align-items:center;gap:0.75rem;color:#64748b;font-size:0.78rem;">
+              <span style="color:#10b981;">✓</span> وصول فوري بعد الاشتراك
+            </div>
+            <div style="display:flex;align-items:center;gap:0.75rem;color:#64748b;font-size:0.78rem;">
+              <span style="color:#10b981;">✓</span> شهادة إتمام معتمدة
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+let cart = [];
+const SOFT_DISCOUNT = 0.5;
+
+function init() {
+  cart = JSON.parse(localStorage.getItem('atoz_cart') || '[]');
+  const user = JSON.parse(localStorage.getItem('atoz_current_user') || 'null');
+  if (user) {
+    document.getElementById('user-name-display').innerHTML = `<span style="font-size:0.85rem;color:#475569;font-weight:600;">${user.fullname}</span>`;
+  }
+  renderCart();
+}
+
+function renderCart() {
+  const container = document.getElementById('cart-items-container');
+  const subtitle = document.getElementById('cart-subtitle');
+  const summaryLabel = document.getElementById('summary-items-label');
+
+  if (cart.length === 0) {
+    subtitle.textContent = 'لا توجد كورسات في السلة';
+    summaryLabel.textContent = '0 كورسات';
+    container.innerHTML = `
+      <div class="empty-cart animate-in">
+        <div style="font-size:5rem;margin-bottom:1.5rem;">🛒</div>
+        <h2 style="font-family:'Tajawal',sans-serif;font-size:1.5rem;font-weight:800;color:#0f172a;margin-bottom:0.75rem;">سلتك فارغة!</h2>
+        <p style="color:#64748b;margin-bottom:2rem;font-size:0.95rem;">لم تضف أي كورسات بعد. تصفح كورساتنا واختر المناسب لك</p>
+        <a href="courses.html" style="display:inline-block;background:linear-gradient(135deg,#0075AF,#06918A);color:#fff;font-weight:700;padding:0.8rem 2.5rem;border-radius:50px;text-decoration:none;box-shadow:0 4px 15px rgba(0,117,175,0.3);">تصفح الكورسات</a>
+      </div>`;
+    updateSummary();
+    return;
+  }
+
+  subtitle.textContent = `${cart.length} كورسات في سلتك`;
+  summaryLabel.textContent = `${cart.length} ${cart.length === 1 ? 'كورس' : 'كورسات'}`;
+
+  const { softDiscount, hasDiscount } = calcDiscount();
+
+  container.innerHTML = `
+    <div style="display:flex;flex-direction:column;gap:1rem;">
+      ${cart.map((course, i) => renderCartItem(course, i, softDiscount, hasDiscount)).join('')}
+    </div>`;
+  updateSummary();
+}
+
+function renderCartItem(course, index, softDiscount, hasDiscount) {
+  const isSoft = course.isSoft;
+  const discountedPrice = isSoft && hasDiscount ? Math.round(course.price * SOFT_DISCOUNT) : course.price;
+  const isDiscounted = isSoft && hasDiscount;
+
+  const bgColor = isSoft
+    ? 'linear-gradient(135deg,rgba(0,117,175,0.08),rgba(6,145,138,0.08))'
+    : 'linear-gradient(135deg,rgba(241,245,249,0.8),rgba(248,250,252,0.8))';
+
+  return `
+    <div class="cart-item animate-in" id="item-${course.id}" style="animation-delay:${index * 0.08}s">
+      <div class="item-emoji" style="background:${bgColor};">${course.emoji}</div>
+      <div style="flex:1;min-width:0;">
+        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.25rem;flex-wrap:wrap;">
+          <div class="item-name">${course.name}</div>
+          ${isSoft ? '<span class="soft-tag">💡 Soft Skill</span>' : ''}
+          ${isDiscounted ? '<span class="discount-badge">50% OFF</span>' : ''}
+        </div>
+        <div class="item-meta">🕐 ${course.hours} ساعة · ${course.level}</div>
+      </div>
+      <div style="text-align:left;flex-shrink:0;">
+        ${isDiscounted
+          ? `<div class="item-price-original">${course.price} جنيه</div>
+             <div class="item-price discounted" style="font-family:'Tajawal',sans-serif;font-size:1.1rem;font-weight:800;">${discountedPrice} جنيه</div>`
+          : `<div class="item-price">${course.price} جنيه</div>`
+        }
+      </div>
+      <button class="btn-remove" onclick="removeItem('${course.id}')" title="إزالة من السلة">✕</button>
+    </div>`;
+}
+
+function calcDiscount() {
+  const hasSoft = cart.some(c => c.isSoft);
+  const hasRegular = cart.some(c => !c.isSoft);
+  const hasDiscount = hasSoft && hasRegular;
+  const softItems = cart.filter(c => c.isSoft);
+  const softOrigTotal = softItems.reduce((sum, c) => sum + c.price, 0);
+  const softDiscount = hasDiscount ? Math.round(softOrigTotal * SOFT_DISCOUNT) : 0;
+  return { hasDiscount, softDiscount, softItems };
+}
+
+function updateSummary() {
+  const { hasDiscount, softDiscount } = calcDiscount();
+  const subTotal = cart.reduce((sum, c) => sum + c.price, 0);
+  const grandTotal = subTotal - softDiscount;
+
+  document.getElementById('sub-total').textContent = `${subTotal.toLocaleString()} جنيه`;
+  document.getElementById('grand-total').textContent = `${grandTotal.toLocaleString()} جنيه`;
+
+  const discountInfo = document.getElementById('discount-info');
+  const discountRow = document.getElementById('discount-row');
+
+  if (hasDiscount) {
+    discountInfo.style.display = 'block';
+    discountRow.style.display = 'flex';
+    document.getElementById('discount-amount').textContent = `- ${softDiscount.toLocaleString()} جنيه`;
+    document.getElementById('discount-detail').textContent =
+      `تم تطبيق خصم 50% على برامج Soft Skills لأنك اخترت كورساً أكاديمياً معها 🎉`;
+  } else {
+    discountInfo.style.display = 'none';
+    discountRow.style.display = 'none';
+  }
+}
+
+function removeItem(courseId) {
+  const el = document.getElementById(`item-${courseId}`);
+  if (el) el.classList.add('removing');
+
+  setTimeout(() => {
+    cart = cart.filter(c => c.id !== courseId);
+    localStorage.setItem('atoz_cart', JSON.stringify(cart));
+    showToast('تم إزالة الكورس من السلة', 'info');
+    renderCart();
+  }, 400);
+}
+
+function handleCheckout() {
+  const user = JSON.parse(localStorage.getItem('atoz_current_user') || 'null');
+  if (!user) {
+    showToast('يجب تسجيل الدخول أولاً لإتمام الاشتراك!', 'error');
+    setTimeout(() => window.location.href = 'login.html', 1500);
+    return;
+  }
+
+  if (cart.length === 0) {
+    showToast('سلتك فارغة!', 'error');
+    return;
+  }
+
+  const btn = document.getElementById('checkout-btn');
+  btn.textContent = '⏳ جاري المعالجة...';
+  btn.disabled = true;
+
+  setTimeout(() => {
+    const { hasDiscount, softDiscount } = calcDiscount();
+    const subTotal = cart.reduce((sum, c) => sum + c.price, 0);
+    const grandTotal = subTotal - softDiscount;
+
+    // Save order
+    const orders = JSON.parse(localStorage.getItem('atoz_orders') || '[]');
+    orders.push({
+      id: Date.now(),
+      userId: user.id,
+      items: [...cart],
+      subTotal,
+      discount: softDiscount,
+      total: grandTotal,
+      date: new Date().toISOString()
+    });
+    localStorage.setItem('atoz_orders', JSON.stringify(orders));
+
+    // Clear cart
+    localStorage.removeItem('atoz_cart');
+    cart = [];
+
+    showToast('🎉 تم الاشتراك بنجاح! استمتع بكورساتك', 'success');
+    setTimeout(() => window.location.href = 'courses.html', 2000);
+  }, 1500);
+}
+
+function showToast(msg, type = 'success') {
+  const toast = document.getElementById('toast');
+  const icons = { success:'✅', error:'❌', info:'ℹ️' };
+  toast.className = `toast-${type}`;
+  toast.style.display = 'flex';
+  toast.innerHTML = `<span>${icons[type]}</span><span>${msg}</span>`;
+  clearTimeout(toast._timer);
+  toast._timer = setTimeout(() => { toast.style.display = 'none'; }, 3500);
+}
+
+init();
+</script>
+</body>
+</html>

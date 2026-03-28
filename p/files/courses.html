@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>الكورسات — A to Z Academy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand-blue: #0075AF;
+      --brand-teal: #06918A;
+      --brand-gold: #FFC200;
+      --brand-dark-gold: #C48700;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Cairo', sans-serif; background: #f1f5f9; }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,117,175,0.1);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    }
+    .nav-logo { font-family:'Tajawal',sans-serif;font-weight:800;font-size:1.3rem;background:linear-gradient(135deg,#0075AF,#06918A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+    .nav-link { color:#334155;font-weight:600;font-size:0.88rem;transition:color 0.2s; }
+    .nav-link:hover { color:#0075AF; }
+    .btn-sm { background:linear-gradient(135deg,#0075AF,#06918A);color:#fff;font-weight:700;padding:0.55rem 1.2rem;border-radius:50px;border:none;cursor:pointer;font-family:'Cairo',sans-serif;font-size:0.85rem;transition:all 0.3s; }
+    .btn-sm:hover { transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,117,175,0.35); }
+
+    /* ===== HERO ===== */
+    .courses-hero {
+      background: linear-gradient(135deg, #0a1628 0%, #0d2a4a 50%, #0a4a52 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 5rem 0 4rem;
+    }
+    .courses-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(6,145,138,0.2) 0%, transparent 60%),
+                  radial-gradient(circle at 80% 30%, rgba(0,117,175,0.25) 0%, transparent 50%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+
+    /* ===== FILTER BAR ===== */
+    .filter-bar {
+      background: #fff;
+      border-radius: 16px;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      border: 2px solid #e2e8f0;
+      background: transparent;
+      color: #475569;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .filter-btn:hover { border-color: var(--brand-blue); color: var(--brand-blue); }
+    .filter-btn.active {
+      background: linear-gradient(135deg, var(--brand-blue), var(--brand-teal));
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(0,117,175,0.3);
+    }
+    .filter-select {
+      padding: 0.5rem 1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 50px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.85rem;
+      color: #475569;
+      cursor: pointer;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .filter-select:focus { border-color: var(--brand-blue); }
+
+    /* ===== SECTION HEADER ===== */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid #e2e8f0;
+    }
+    .section-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+    .section-title-text {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+    .section-count {
+      margin-right: auto;
+      background: linear-gradient(135deg, rgba(0,117,175,0.1), rgba(6,145,138,0.1));
+      color: var(--brand-blue);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.25rem 0.8rem;
+      border-radius: 50px;
+    }
+
+    /* ===== COURSE CARD ===== */
+    .course-card {
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+    .course-card:hover {
+      box-shadow: 0 20px 50px rgba(0,117,175,0.12);
+      transform: translateY(-6px);
+      border-color: transparent;
+    }
+    .course-thumb {
+      height: 160px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+    }
+    .course-badge {
+      position: absolute;
+      top: 12px; right: 12px;
+      padding: 0.3rem 0.75rem;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+    .badge-soft {
+      background: linear-gradient(135deg, rgba(255,194,0,0.2), rgba(196,135,0,0.2));
+      border: 1px solid rgba(255,194,0,0.5);
+      color: var(--brand-dark-gold);
+    }
+    .badge-new {
+      background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(5,150,105,0.15));
+      border: 1px solid rgba(16,185,129,0.4);
+      color: #065f46;
+    }
+    .badge-pop {
+      background: linear-gradient(135deg, rgba(0,117,175,0.1), rgba(6,145,138,0.1));
+      border: 1px solid rgba(0,117,175,0.3);
+      color: var(--brand-blue);
+    }
+    .course-body { padding: 1.25rem; }
+    .course-title { font-family:'Tajawal',sans-serif;font-size:1.05rem;font-weight:700;color:#0f172a;margin-bottom:0.4rem; }
+    .course-desc { color:#64748b;font-size:0.82rem;line-height:1.65;margin-bottom:1rem; }
+    .course-meta { display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem; }
+    .meta-tag { background:#f1f5f9;color:#475569;font-size:0.75rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:6px; }
+    .course-price {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem;
+      border-top: 1px solid #f1f5f9;
+    }
+    .price-num { font-family:'Tajawal',sans-serif;font-size:1.2rem;font-weight:800;color:var(--brand-blue); }
+    .price-currency { font-size:0.75rem;color:#94a3b8;margin-right:2px; }
+    .btn-add {
+      background: linear-gradient(135deg, var(--brand-gold), var(--brand-dark-gold));
+      color: #1a1a1a;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 0.55rem 1.1rem;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 3px 10px rgba(255,194,0,0.3);
+    }
+    .btn-add:hover { transform:translateY(-2px);box-shadow:0 6px 16px rgba(255,194,0,0.4); }
+    .btn-add.in-cart {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff;
+      box-shadow: 0 3px 10px rgba(16,185,129,0.3);
+    }
+    .btn-add.in-cart:hover { box-shadow: 0 6px 16px rgba(16,185,129,0.4); }
+
+    /* ===== SOFT SKILLS SPECIAL CARD ===== */
+    .soft-card-special {
+      background: linear-gradient(135deg, #0d2a4a, #0a4a52);
+      border: 1px solid rgba(255,194,0,0.2);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+    .soft-card-special:hover {
+      border-color: rgba(255,194,0,0.4);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    }
+
+    /* ===== DISCOUNT BANNER ===== */
+    .discount-banner {
+      background: linear-gradient(135deg, var(--brand-gold), var(--brand-dark-gold));
+      border-radius: 16px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    /* ===== EMPTY STATE ===== */
+    .empty-state { text-align:center;padding:4rem 2rem;color:#94a3b8; }
+
+    /* ===== TOAST ===== */
+    #toast {
+      position: fixed; top: 24px; right: 24px; z-index: 9999;
+      min-width: 280px; padding: 1rem 1.5rem; border-radius: 14px;
+      font-weight: 600; font-size: 0.9rem; display: none;
+      align-items: center; gap: 0.75rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      animation: slideIn 0.4s ease;
+    }
+    @keyframes slideIn { from{opacity:0;transform:translateX(50px)}to{opacity:1;transform:translateX(0)} }
+    .toast-success { background:#fff;border-right:4px solid #10b981;color:#065f46; }
+    .toast-error { background:#fff;border-right:4px solid #ef4444;color:#991b1b; }
+    .toast-info { background:#fff;border-right:4px solid #0075AF;color:#0075AF; }
+
+    /* User bar */
+    .user-bar {
+      background: linear-gradient(135deg, rgba(0,117,175,0.08), rgba(6,145,138,0.08));
+      border: 1px solid rgba(0,117,175,0.15);
+      border-radius: 12px;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .animate-in {
+      animation: fadeInUp 0.5s ease both;
+    }
+    @keyframes fadeInUp {
+      from { opacity:0; transform:translateY(20px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div id="toast"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="index.html" class="flex items-center gap-3">
+         <div class="flex items-center gap-3">
+        <img src="assets/MAIN LOGO LIGHT (Transparent).png" alt="A to Z Academy Logo" class="w-9 h-9 object-contain">
+        <span class="footer-logo">A to Z Academy</span>
+      </div>
+      </a>
+      <div class="hidden md:flex items-center gap-6">
+        <a href="index.html" class="nav-link">الرئيسية</a>
+        <a href="courses.html" class="nav-link" style="color:#0075AF;">الكورسات</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="cart.html" class="relative flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors font-semibold text-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          <span id="cart-badge" class="hidden bg-yellow-400 text-black text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+        </a>
+        <div id="user-actions"></div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="courses-hero">
+  <div class="hero-grid"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+    <div style="display:inline-block;background:rgba(255,194,0,0.15);border:1px solid rgba(255,194,0,0.3);color:#FFC200;padding:0.4rem 1.2rem;border-radius:50px;font-size:0.8rem;font-weight:700;margin-bottom:1rem;">📚 جميع البرامج</div>
+    <h1 style="font-family:'Tajawal',sans-serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:800;color:#fff;margin-bottom:1rem;">اختر كورسك المثالي</h1>
+    <p style="color:rgba(255,255,255,0.7);font-size:1rem;max-width:500px;margin:0 auto;">برامج مُصممة لكل مرحلة دراسية، مع خصومات حصرية عند الجمع بين الكورسات</p>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+  <!-- User Bar -->
+  <div id="user-bar-container"></div>
+
+  <!-- Discount Banner -->
+  <div class="discount-banner animate-in">
+    <div style="font-size:2rem;">🎁</div>
+    <div>
+      <div style="font-weight:800;font-size:1rem;color:#1a1a1a;">خصم 50% على برامج Soft Skills!</div>
+      <div style="font-size:0.82rem;color:rgba(0,0,0,0.65);">عند إضافة أي كورس Soft Skills مع كورس أكاديمي آخر</div>
+    </div>
+    <a href="cart.html" style="margin-right:auto;background:rgba(0,0,0,0.15);color:#1a1a1a;font-weight:700;padding:0.6rem 1.5rem;border-radius:50px;font-size:0.85rem;text-decoration:none;border:2px solid rgba(0,0,0,0.2);transition:all 0.3s;">عرض السلة</a>
+  </div>
+
+  <!-- Filter Bar (shown for guests) -->
+  <div id="filter-bar" class="filter-bar mb-8 animate-in" style="display:none;">
+    <span style="font-weight:700;color:#1e293b;font-size:0.9rem;">عرض:</span>
+    <button class="filter-btn active" onclick="filterCourses('all', this)">الكل</button>
+    <button class="filter-btn" onclick="filterCourses('elementary', this)">🧒 ابتدائي</button>
+    <button class="filter-btn" onclick="filterCourses('middle', this)">📗 إعدادي</button>
+    <button class="filter-btn" onclick="filterCourses('high', this)">🎓 ثانوي</button>
+    <button class="filter-btn" onclick="filterCourses('university', this)">💼 جامعة</button>
+    <button class="filter-btn" onclick="filterCourses('soft', this)">💡 Soft Skills</button>
+  </div>
+
+  <!-- Courses Container -->
+  <div id="courses-container"></div>
+</div>
+
+<script>
+const ALL_COURSES = {
+  elementary: {
+    label: 'ابتدائي',
+    icon: '🧒',
+    color: 'linear-gradient(135deg,#e0f2fe,#b3e5fc)',
+    courses: [
+      { id:'e1', name:'الطفل العبقري', desc:'برنامج شامل يطور مهارات التفكير النقدي والإبداع لدى الأطفال من خلال أنشطة تفاعلية وممتعة', price:150, hours:'12', level:'ابتدائي', emoji:'⭐', badge:'new', badgeLabel:'جديد' },
+      { id:'e2', name:'ICT للابتدائي', desc:'مقدمة احترافية لعالم التكنولوجيا والحاسوب تناسب الأطفال في المرحلة الابتدائية بأسلوب بسيط وممتع', price:180, hours:'10', level:'ابتدائي', emoji:'💻', badge:'pop', badgeLabel:'الأكثر طلباً' }
+    ]
+  },
+  middle: {
+    label: 'إعدادي',
+    icon: '📗',
+    color: 'linear-gradient(135deg,#dcfce7,#bbf7d0)',
+    courses: [
+      { id:'m1', name:'بداية', desc:'منهج متكامل يغطي مواد المرحلة الإعدادية بأسلوب عصري يجمع بين الشرح العميق والتطبيق العملي', price:200, hours:'20', level:'إعدادي', emoji:'📘', badge:'pop', badgeLabel:'الأكثر طلباً' },
+      { id:'m2', name:'ICT للإعدادي', desc:'تعمّق في عالم التكنولوجيا مع تطبيقات عملية تناسب طلاب المرحلة الإعدادية', price:160, hours:'12', level:'إعدادي', emoji:'🖥️', badge:'new', badgeLabel:'جديد' }
+    ]
+  },
+  high: {
+    label: 'ثانوي',
+    icon: '🎓',
+    color: 'linear-gradient(135deg,#fef9c3,#fde68a)',
+    courses: [
+      { id:'h1', name:'انطلاقة', desc:'برنامج تفوق شامل لطلاب الثانوية العامة يضمن الاستعداد الكامل لامتحانات الشهادة بأعلى الدرجات', price:350, hours:'40', level:'ثانوي', emoji:'🚀', badge:'pop', badgeLabel:'الأكثر طلباً' },
+      { id:'h2', name:'برنامج بكالوريا', desc:'منهج متخصص لطلاب البكالوريا الدولية يغطي كل المقررات بعمق أكاديمي عالي المستوى', price:400, hours:'50', level:'ثانوي', emoji:'🏆', badge:'', badgeLabel:'' }
+    ]
+  },
+  university: {
+    label: 'جامعة فأكثر',
+    icon: '💼',
+    color: 'linear-gradient(135deg,#e0e7ff,#c7d2fe)',
+    courses: [
+      { id:'u1', name:'نحو أساس أفضل', desc:'برنامج تأسيسي متكامل للطلاب الجامعيين الجدد يساعدهم على الانتقال بثقة من الثانوية للجامعة', price:250, hours:'18', level:'جامعة', emoji:'🎯', badge:'new', badgeLabel:'جديد' },
+      { id:'u2', name:'محلل البيانات', desc:'تعلّم تحليل البيانات باستخدام أحدث الأدوات والتقنيات مع مشاريع عملية حقيقية', price:500, hours:'35', level:'جامعة', emoji:'📊', badge:'pop', badgeLabel:'مميز' },
+      { id:'u3', name:'Automation', desc:'احترف أتمتة الأعمال والعمليات باستخدام أفضل الأدوات الحديثة لزيادة الكفاءة والإنتاجية', price:450, hours:'30', level:'جامعة', emoji:'⚙️', badge:'', badgeLabel:'' },
+      { id:'u4', name:'ERP Odoo', desc:'إتقان نظام Odoo الشامل لإدارة الموارد البشرية والمحاسبة والمخازن والمبيعات', price:600, hours:'40', level:'جامعة', emoji:'🏢', badge:'pop', badgeLabel:'مطلوب' }
+    ]
+  },
+  soft: {
+    label: 'Soft Skills',
+    icon: '💡',
+    color: 'linear-gradient(135deg,#0d2a4a,#0a4a52)',
+    isDark: true,
+    courses: [
+      { id:'s1', name:'Digital Detox', desc:'تعلّم استخدام التكنولوجيا بوعي وتوازن. برنامج يساعدك على بناء عادات رقمية صحية وتحقيق التوازن في حياتك اليومية', price:120, hours:'6', level:'Soft Skills', emoji:'📵', badge:'soft', badgeLabel:'Soft Skill', isSoft: true },
+      { id:'s2', name:'Focus — قوة التركيز', desc:'اكتشف تقنيات علمية مثبتة لتعزيز تركيزك وإنتاجيتك. تعلّم التحكم في انتباهك وتحقيق أهدافك بكفاءة أعلى', price:100, hours:'8', level:'Soft Skills', emoji:'🧠', badge:'soft', badgeLabel:'Soft Skill', isSoft: true }
+    ]
+  }
+};
+
+let currentUser = null;
+let cart = [];
+let activeFilter = 'all';
+
+function init() {
+  currentUser = JSON.parse(localStorage.getItem('atoz_current_user') || 'null');
+  cart = JSON.parse(localStorage.getItem('atoz_cart') || '[]');
+  updateCartBadge();
+  renderUserBar();
+  renderUserActions();
+  renderCourses();
+}
+
+function updateCartBadge() {
+  const badge = document.getElementById('cart-badge');
+  if (cart.length > 0) {
+    badge.textContent = cart.length;
+    badge.classList.remove('hidden');
+  } else {
+    badge.classList.add('hidden');
+  }
+}
+
+function renderUserBar() {
+  const container = document.getElementById('user-bar-container');
+  if (currentUser) {
+    const ageLabels = { elementary:'ابتدائي', middle:'إعدادي', high:'ثانوي', university:'جامعة فأكثر' };
+    container.innerHTML = `
+      <div class="user-bar animate-in" style="margin-bottom:1.5rem;">
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <div style="width:40px;height:40px;background:linear-gradient(135deg,#0075AF,#06918A);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;">${currentUser.fullname[0]}</div>
+          <div>
+            <div style="font-weight:700;color:#0f172a;font-size:0.95rem;">أهلاً، ${currentUser.fullname}!</div>
+            <div style="color:#64748b;font-size:0.8rem;">مرحلتك: ${ageLabels[currentUser.ageGroup] || currentUser.ageGroup}</div>
+          </div>
+        </div>
+        <div style="background:linear-gradient(135deg,rgba(0,117,175,0.1),rgba(6,145,138,0.1));border:1px solid rgba(0,117,175,0.2);color:#0075AF;font-size:0.8rem;font-weight:700;padding:0.3rem 0.9rem;border-radius:50px;">
+          عرض كورسات ${ageLabels[currentUser.ageGroup] || ''} + Soft Skills
+        </div>
+      </div>`;
+  } else {
+    document.getElementById('filter-bar').style.display = 'flex';
+  }
+}
+
+function renderUserActions() {
+  const container = document.getElementById('user-actions');
+  if (currentUser) {
+    container.innerHTML = `
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <span style="font-size:0.85rem;color:#475569;font-weight:600;">${currentUser.fullname}</span>
+        <button onclick="logout()" style="background:none;border:2px solid #e2e8f0;color:#475569;font-family:'Cairo',sans-serif;font-weight:600;font-size:0.82rem;padding:0.4rem 1rem;border-radius:50px;cursor:pointer;transition:all 0.3s;">خروج</button>
+      </div>`;
+  } else {
+    container.innerHTML = `<a href="login.html" class="btn-sm">تسجيل الدخول</a>`;
+  }
+}
+
+function getCoursesToShow() {
+  if (currentUser) {
+    const ageGroup = currentUser.ageGroup;
+    const result = {};
+    if (ALL_COURSES[ageGroup]) result[ageGroup] = ALL_COURSES[ageGroup];
+    result['soft'] = ALL_COURSES['soft'];
+    return result;
+  } else {
+    if (activeFilter === 'all') return ALL_COURSES;
+    if (activeFilter === 'soft') return { soft: ALL_COURSES.soft };
+    return { [activeFilter]: ALL_COURSES[activeFilter] };
+  }
+}
+
+function renderCourses() {
+  const container = document.getElementById('courses-container');
+  const toShow = getCoursesToShow();
+  let html = '';
+
+  Object.entries(toShow).forEach(([key, group], gi) => {
+    const isDark = group.isDark;
+    html += `
+      <div class="mb-10 animate-in" style="animation-delay:${gi * 0.1}s">
+        <div class="section-header">
+          <div class="section-icon" style="background:${group.color};">${group.icon}</div>
+          <div class="section-title-text">المرحلة ${group.label}</div>
+          <div class="section-count">${group.courses.length} كورسات</div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-${group.courses.length > 2 ? '4' : '2'} gap-5">
+          ${group.courses.map(course => renderCourseCard(course, isDark)).join('')}
+        </div>
+      </div>`;
+  });
+
+  container.innerHTML = html || '<div class="empty-state"><div style="font-size:3rem;margin-bottom:1rem;">🔍</div><div style="font-size:1.1rem;font-weight:600;">لا توجد كورسات في هذه الفئة</div></div>';
+}
+
+function renderCourseCard(course, isDark) {
+  const inCart = cart.some(c => c.id === course.id);
+  const badgeColors = { soft: 'badge-soft', new: 'badge-new', pop: 'badge-pop' };
+
+  if (isDark) {
+    return `
+      <div class="soft-card-special" style="position:relative;">
+        <div style="padding:1.5rem;position:relative;">
+          ${course.badge ? `<div style="position:absolute;top:1rem;left:1rem;background:rgba(255,194,0,0.15);border:1px solid rgba(255,194,0,0.4);color:#FFC200;font-size:0.72rem;font-weight:700;padding:0.25rem 0.75rem;border-radius:50px;">${course.badgeLabel}</div>` : ''}
+          <div style="font-size:3rem;margin-bottom:1rem;">${course.emoji}</div>
+          <div style="font-family:'Tajawal',sans-serif;font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:0.5rem;">${course.name}</div>
+          <div style="color:rgba(255,255,255,0.65);font-size:0.82rem;line-height:1.7;margin-bottom:1rem;">${course.desc}</div>
+          <div style="display:flex;gap:0.5rem;margin-bottom:1.25rem;flex-wrap:wrap;">
+            <span style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);font-size:0.72rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:6px;">🕐 ${course.hours} ساعة</span>
+            <span style="background:rgba(255,194,0,0.12);color:#FFC200;font-size:0.72rem;font-weight:600;padding:0.25rem 0.6rem;border-radius:6px;">50% خصم عند الجمع</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,0.08);padding-top:1rem;">
+            <div>
+              <span style="font-family:'Tajawal',sans-serif;font-size:1.2rem;font-weight:800;color:#FFC200;">${course.price}</span>
+              <span style="font-size:0.72rem;color:rgba(255,255,255,0.4);"> جنيه</span>
+            </div>
+            <button onclick="addToCart('${course.id}')" class="btn-add${inCart ? ' in-cart' : ''}" id="btn-${course.id}">
+              ${inCart ? '✓ في السلة' : '🛒 أضف للسلة'}
+            </button>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  return `
+    <div class="course-card">
+      <div class="course-thumb" style="background:linear-gradient(135deg,rgba(0,117,175,0.06),rgba(6,145,138,0.06));">
+        ${course.badge ? `<div class="course-badge ${badgeColors[course.badge] || ''}">${course.badgeLabel}</div>` : ''}
+        ${course.emoji}
+      </div>
+      <div class="course-body">
+        <div class="course-title">${course.name}</div>
+        <div class="course-desc">${course.desc}</div>
+        <div class="course-meta">
+          <span class="meta-tag">🕐 ${course.hours} ساعة</span>
+          <span class="meta-tag">📚 ${course.level}</span>
+        </div>
+        <div class="course-price">
+          <div>
+            <span class="price-num">${course.price}</span>
+            <span class="price-currency">جنيه</span>
+          </div>
+          <button onclick="addToCart('${course.id}')" class="btn-add${inCart ? ' in-cart' : ''}" id="btn-${course.id}">
+            ${inCart ? '✓ في السلة' : '+ أضف للسلة'}
+          </button>
+        </div>
+      </div>
+    </div>`;
+}
+
+function addToCart(courseId) {
+  const allFlat = Object.values(ALL_COURSES).flatMap(g => g.courses);
+  const course = allFlat.find(c => c.id === courseId);
+  if (!course) return;
+
+  const inCart = cart.some(c => c.id === courseId);
+  if (inCart) {
+    showToast('هذا الكورس موجود في السلة بالفعل!', 'info');
+    return;
+  }
+
+  cart.push(course);
+  localStorage.setItem('atoz_cart', JSON.stringify(cart));
+  updateCartBadge();
+
+  const btn = document.getElementById(`btn-${courseId}`);
+  if (btn) {
+    btn.classList.add('in-cart');
+    btn.textContent = '✓ في السلة';
+  }
+
+  const hasSoft = cart.some(c => c.isSoft);
+  const hasRegular = cart.some(c => !c.isSoft);
+  if (hasSoft && hasRegular) {
+    showToast(`🎁 تم الإضافة! خصم 50% على Soft Skills مطبَّق في السلة`, 'success');
+  } else {
+    showToast(`✅ تم إضافة "${course.name}" للسلة`, 'success');
+  }
+}
+
+function filterCourses(filter, btn) {
+  activeFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCourses();
+}
+
+function logout() {
+  localStorage.removeItem('atoz_current_user');
+  showToast('تم تسجيل الخروج', 'info');
+  setTimeout(() => location.reload(), 800);
+}
+
+function showToast(msg, type = 'success') {
+  const toast = document.getElementById('toast');
+  const icons = { success:'✅', error:'❌', info:'ℹ️' };
+  toast.className = `toast-${type}`;
+  toast.style.display = 'flex';
+  toast.innerHTML = `<span>${icons[type]}</span><span>${msg}</span>`;
+  clearTimeout(toast._timer);
+  toast._timer = setTimeout(() => { toast.style.display = 'none'; }, 3500);
+}
+
+init();
+</script>
+</body>
+</html>

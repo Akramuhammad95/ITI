@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>إنشاء حساب — A to Z Academy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand-blue: #0075AF;
+      --brand-teal: #06918A;
+      --brand-gold: #FFC200;
+      --brand-dark-gold: #C48700;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Cairo', sans-serif; min-height: 100vh; }
+
+    .page-bg {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0a1628 0%, #0d2a4a 50%, #0a4a52 100%);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+    .page-bg::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(0,117,175,0.25) 0%, transparent 50%),
+                  radial-gradient(circle at 20% 80%, rgba(6,145,138,0.2) 0%, transparent 50%),
+                  radial-gradient(circle at 50% 50%, rgba(255,194,0,0.04) 0%, transparent 60%);
+    }
+    .grid-bg {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+
+    .signup-card {
+      background: rgba(255,255,255,0.97);
+      border-radius: 28px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.35);
+      position: relative;
+      z-index: 10;
+      animation: cardAppear 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+      overflow: hidden;
+    }
+    @keyframes cardAppear {
+      from { opacity: 0; transform: translateY(30px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .form-label {
+      display: block;
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: #1e293b;
+      margin-bottom: 0.5rem;
+    }
+    .form-input {
+      width: 100%;
+      padding: 0.85rem 1.1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.95rem;
+      color: #1e293b;
+      transition: all 0.3s ease;
+      background: #f8fafc;
+      outline: none;
+    }
+    .form-input:focus {
+      border-color: var(--brand-blue);
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(0,117,175,0.1);
+    }
+    .form-input::placeholder { color: #94a3b8; }
+
+    /* Age Group Cards */
+    .age-group-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+    .age-card {
+      border: 2px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 1rem 0.75rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: #f8fafc;
+      position: relative;
+    }
+    .age-card:hover {
+      border-color: var(--brand-blue);
+      transform: translateY(-2px);
+    }
+    .age-card.selected {
+      border-color: var(--brand-blue);
+      background: linear-gradient(135deg, rgba(0,117,175,0.08), rgba(6,145,138,0.08));
+      box-shadow: 0 0 0 4px rgba(0,117,175,0.1);
+    }
+    .age-card .check {
+      position: absolute;
+      top: 8px; left: 8px;
+      width: 20px; height: 20px;
+      background: linear-gradient(135deg, var(--brand-blue), var(--brand-teal));
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.7rem;
+    }
+    .age-card.selected .check { display: flex; }
+    .age-card-icon { font-size: 1.8rem; margin-bottom: 0.4rem; }
+    .age-card-title { font-weight: 700; font-size: 0.88rem; color: #0f172a; }
+    .age-card-sub { font-size: 0.75rem; color: #64748b; }
+
+    .btn-signup {
+      width: 100%;
+      background: linear-gradient(135deg, var(--brand-blue), var(--brand-teal));
+      color: #fff;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.9rem;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,117,175,0.3);
+    }
+    .btn-signup:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,117,175,0.4);
+    }
+
+    /* Strength indicator */
+    .strength-bar {
+      display: flex;
+      gap: 4px;
+      margin-top: 0.5rem;
+    }
+    .strength-segment {
+      flex: 1;
+      height: 4px;
+      border-radius: 2px;
+      background: #e2e8f0;
+      transition: background 0.3s;
+    }
+    .strength-text { font-size: 0.78rem; font-weight: 600; margin-top: 0.3rem; }
+
+    #toast {
+      position: fixed; top: 24px; right: 24px; z-index: 9999;
+      min-width: 280px; padding: 1rem 1.5rem; border-radius: 12px;
+      font-weight: 600; font-size: 0.9rem; display: none;
+      align-items: center; gap: 0.75rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    }
+    .toast-success { background: #fff; border-right: 4px solid #10b981; color: #065f46; }
+    .toast-error { background: #fff; border-right: 4px solid #ef4444; color: #991b1b; }
+  </style>
+</head>
+<body>
+
+<div id="toast"></div>
+
+<div class="page-bg">
+  <div class="grid-bg"></div>
+
+  <div class="signup-card">
+    <!-- Top accent -->
+    <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#FFC200,#C48700,#0075AF);"></div>
+
+    <!-- Header -->
+    <div class="text-center mb-6">
+      <a href="index.html" class="flex items-center justify-center gap-3 mb-5">
+        <div style="width:44px;height:44px;background:linear-gradient(135deg,#0075AF,#06918A);border-radius:12px;display:flex;align-items:center;justify-content:center;">
+          <img src="assets/logo.png" alt="A to Z Academy Logo" class="w-9 h-9 object-contain">
+        </div>
+        <span style="font-family:'Tajawal',sans-serif;font-weight:800;font-size:1.3rem;background:linear-gradient(135deg,#0075AF,#06918A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">A to Z Academy</span>
+      </a>
+      <h1 style="font-family:'Tajawal',sans-serif;font-size:1.7rem;font-weight:800;color:#0f172a;margin-bottom:0.4rem;">ابدأ رحلتك معنا 🚀</h1>
+      <p style="color:#64748b;font-size:0.9rem;">أنشئ حسابك مجاناً في دقيقة واحدة</p>
+    </div>
+
+    <form id="signup-form" onsubmit="handleSignup(event)">
+      <!-- Name -->
+      <div style="margin-bottom:1rem;">
+        <label class="form-label" for="fullname">الاسم الكامل</label>
+        <input type="text" id="fullname" class="form-input" placeholder="أدخل اسمك الكامل" required/>
+      </div>
+
+      <!-- Email -->
+      <div style="margin-bottom:1rem;">
+        <label class="form-label" for="email">البريد الإلكتروني</label>
+        <input type="email" id="email" class="form-input" placeholder="example@email.com" required/>
+      </div>
+
+      <!-- Password -->
+      <div style="margin-bottom:0.5rem;">
+        <label class="form-label" for="password">كلمة المرور</label>
+        <div style="position:relative;">
+          <input type="password" id="password" class="form-input" placeholder="8 أحرف على الأقل" oninput="checkStrength(this.value)" required minlength="8"/>
+          <button type="button" onclick="togglePass()" style="position:absolute;top:50%;transform:translateY(-50%);left:1rem;background:none;border:none;cursor:pointer;color:#94a3b8;">👁</button>
+        </div>
+        <div class="strength-bar mt-2">
+          <div class="strength-segment" id="s1"></div>
+          <div class="strength-segment" id="s2"></div>
+          <div class="strength-segment" id="s3"></div>
+          <div class="strength-segment" id="s4"></div>
+        </div>
+        <div class="strength-text" id="strength-text" style="color:#94a3b8;"></div>
+      </div>
+
+      <!-- Age Group -->
+      <div style="margin-bottom:1.25rem;">
+        <label class="form-label">المرحلة الدراسية</label>
+        <p style="color:#64748b;font-size:0.8rem;margin-bottom:0.75rem;">اختر مرحلتك لنعرض لك الكورسات المناسبة</p>
+        <div class="age-group-grid" id="age-group-grid">
+          <div class="age-card" onclick="selectAge('elementary', this)">
+            <div class="check">✓</div>
+            <div class="age-card-icon">🧒</div>
+            <div class="age-card-title">ابتدائي</div>
+            <div class="age-card-sub">6 – 12 سنة</div>
+          </div>
+          <div class="age-card" onclick="selectAge('middle', this)">
+            <div class="check">✓</div>
+            <div class="age-card-icon">📗</div>
+            <div class="age-card-title">إعدادي</div>
+            <div class="age-card-sub">12 – 15 سنة</div>
+          </div>
+          <div class="age-card" onclick="selectAge('high', this)">
+            <div class="check">✓</div>
+            <div class="age-card-icon">🎓</div>
+            <div class="age-card-title">ثانوي</div>
+            <div class="age-card-sub">15 – 18 سنة</div>
+          </div>
+          <div class="age-card" onclick="selectAge('university', this)">
+            <div class="check">✓</div>
+            <div class="age-card-icon">💼</div>
+            <div class="age-card-title">جامعة فأكثر</div>
+            <div class="age-card-sub">+18 سنة</div>
+          </div>
+        </div>
+        <input type="hidden" id="age-group" required/>
+      </div>
+
+      <!-- Terms -->
+      <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1.5rem;">
+        <input type="checkbox" id="terms" style="width:18px;height:18px;accent-color:#0075AF;" required/>
+        <label for="terms" style="color:#475569;font-size:0.85rem;">
+          أوافق على <a href="#" style="color:#0075AF;font-weight:700;">شروط الاستخدام</a> و<a href="#" style="color:#0075AF;font-weight:700;">سياسة الخصوصية</a>
+        </label>
+      </div>
+
+      <button type="submit" class="btn-signup">
+        <span id="btn-text">إنشاء الحساب مجاناً</span>
+        <span id="btn-loader" style="display:none;">⏳ جاري التسجيل...</span>
+      </button>
+    </form>
+
+    <div style="text-align:center;margin-top:1.5rem;color:#64748b;font-size:0.88rem;">
+      لديك حساب بالفعل؟
+      <a href="login.html" style="color:#0075AF;font-weight:700;text-decoration:none;">تسجيل الدخول</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  let selectedAge = '';
+
+  // Redirect if already logged in
+  const currentUser = JSON.parse(localStorage.getItem('atoz_current_user') || 'null');
+  if (currentUser) window.location.href = 'courses.html';
+
+  function selectAge(age, el) {
+    document.querySelectorAll('.age-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedAge = age;
+    document.getElementById('age-group').value = age;
+  }
+
+  function togglePass() {
+    const p = document.getElementById('password');
+    p.type = p.type === 'password' ? 'text' : 'password';
+  }
+
+  function checkStrength(val) {
+    const segs = ['s1','s2','s3','s4'];
+    const txt = document.getElementById('strength-text');
+    let score = 0;
+    if (val.length >= 8) score++;
+    if (/[A-Z]/.test(val)) score++;
+    if (/[0-9]/.test(val)) score++;
+    if (/[^A-Za-z0-9]/.test(val)) score++;
+
+    const colors = ['#ef4444','#f97316','#eab308','#22c55e'];
+    const labels = ['ضعيفة','مقبولة','جيدة','قوية جداً'];
+    segs.forEach((id, i) => {
+      document.getElementById(id).style.background = i < score ? colors[score-1] : '#e2e8f0';
+    });
+    txt.textContent = val.length > 0 ? `قوة كلمة المرور: ${labels[score-1] || ''}` : '';
+    txt.style.color = score > 0 ? colors[score-1] : '#94a3b8';
+  }
+
+  function handleSignup(e) {
+    e.preventDefault();
+    if (!selectedAge) {
+      showToast('الرجاء اختيار المرحلة الدراسية', 'error');
+      return;
+    }
+
+    const btnText = document.getElementById('btn-text');
+    const btnLoader = document.getElementById('btn-loader');
+    btnText.style.display = 'none';
+    btnLoader.style.display = 'inline';
+
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const fullname = document.getElementById('fullname').value.trim();
+
+    setTimeout(() => {
+      const users = JSON.parse(localStorage.getItem('atoz_users') || '[]');
+      if (users.find(u => u.email === email)) {
+        btnText.style.display = 'inline';
+        btnLoader.style.display = 'none';
+        showToast('هذا البريد الإلكتروني مسجل بالفعل!', 'error');
+        return;
+      }
+
+      const newUser = {
+        id: Date.now().toString(),
+        fullname,
+        email,
+        password,
+        ageGroup: selectedAge,
+        createdAt: new Date().toISOString()
+      };
+
+      users.push(newUser);
+      localStorage.setItem('atoz_users', JSON.stringify(users));
+      localStorage.setItem('atoz_current_user', JSON.stringify(newUser));
+      showToast('تم إنشاء الحساب بنجاح! 🎉', 'success');
+      setTimeout(() => window.location.href = 'courses.html', 1200);
+    }, 1000);
+  }
+
+  function showToast(msg, type) {
+    const toast = document.getElementById('toast');
+    toast.className = `toast-${type}`;
+    toast.style.display = 'flex';
+    toast.innerHTML = `<span>${type === 'success' ? '✅' : '❌'}</span><span>${msg}</span>`;
+    setTimeout(() => { toast.style.display = 'none'; }, 3500);
+  }
+</script>
+</body>
+</html>
