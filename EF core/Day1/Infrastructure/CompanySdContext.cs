@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Models;
+namespace Infrastructure;
 
 public partial class CompanySdContext : DbContext
 {

@@ -1,10 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Core.Interfaces;
+using Infrastructure.Data;
 
-namespace Infrastructure.Implementation
+namespace Infrastructure.UnitOfWork
 {
-    internal class UnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
+        private readonly AppDbContext _context;
+
+        public IEmployeeRepository Employees { get; }
+
+        public UnitOfWork(AppDbContext context, IEmployeeRepository employeeRepository)
+        {
+            _context = context;
+            Employees = employeeRepository;
+        }
+
+        public async Task<int> CompleteAsync()
+        {
+            try
+            {
+                return await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.InnerException?.Message);
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+        }
     }
 }

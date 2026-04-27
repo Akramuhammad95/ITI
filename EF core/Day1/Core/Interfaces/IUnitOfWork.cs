@@ -4,7 +4,9 @@ using System.Text;
 
 namespace Core.Interfaces
 {
-    internal class IUnitOfWork
+    public interface IUnitOfWork
     {
+        IEmployeeRepository Employees { get; }
+        Task<int> CompleteAsync();
     }
 }
