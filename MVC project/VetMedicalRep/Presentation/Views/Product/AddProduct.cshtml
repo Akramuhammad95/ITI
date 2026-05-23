@@ -1,0 +1,28 @@
+@model Application.DTOs.ProductDTO.ProductAddRequest
+
+@{
+    ViewData["Title"] = "Add Product";
+}
+
+<h1>Add Product</h1>
+
+<form method="post" action="/Product/AddProduct">
+    @Html.AntiForgeryToken()
+
+    <div>
+        <label for="Name">Name</label>
+        <input id="Name" name="Name" value="@Model?.Name" />
+    </div>
+
+    <div>
+        <label for="Discription">Description</label>
+        <textarea id="Discription" name="Discription">@Model?.Discription</textarea>
+    </div>
+
+    <div>
+        <label for="CategoryId">Category Id</label>
+        <input id="CategoryId" name="CategoryId" value="@Model?.CategoryId" />
+    </div>
+
+    <button type="submit">Save</button>
+</form>

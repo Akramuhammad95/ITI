@@ -1,0 +1,33 @@
+@model Application.DTOs.InventoryDTO.InventoryAddRequest
+
+@{
+    ViewData["Title"] = "Add Inventory";
+}
+
+<h1>Add Inventory</h1>
+
+<form method="post" action="/Inventory/AddInventory">
+    @Html.AntiForgeryToken()
+
+    <div>
+        <label for="ProductId">Product Id</label>
+        <input id="ProductId" name="ProductId" value="@Model?.ProductId" />
+    </div>
+
+    <div>
+        <label for="AreaId">Area Id</label>
+        <input id="AreaId" name="AreaId" value="@Model?.AreaId" />
+    </div>
+
+    <div>
+        <label for="InitialQuantity">Initial Quantity</label>
+        <input id="InitialQuantity" name="InitialQuantity" type="number" value="@Model?.InitialQuantity" />
+    </div>
+
+    <div>
+        <label for="LowStockThreshold">Low Stock Threshold</label>
+        <input id="LowStockThreshold" name="LowStockThreshold" type="number" value="@Model?.LowStockThreshold" />
+    </div>
+
+    <button type="submit">Save</button>
+</form>

@@ -1,0 +1,36 @@
+@model Presentation.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>Register</h1>
+
+<div asp-validation-summary="All"></div>
+
+<form method="post" action="/Account/Register">
+    @Html.AntiForgeryToken()
+
+    <input type="hidden" name="ReturnUrl" value="@Model?.ReturnUrl" />
+
+    <div>
+        <label for="Email">Email</label>
+        <input id="Email" name="Email" type="email" value="@Model?.Email" />
+    </div>
+
+    <div>
+        <label for="Password">Password</label>
+        <input id="Password" name="Password" type="password" />
+    </div>
+
+    <div>
+        <label for="ConfirmPassword">Confirm Password</label>
+        <input id="ConfirmPassword" name="ConfirmPassword" type="password" />
+    </div>
+
+    <button type="submit">Register</button>
+</form>
+
+<p>
+    <a href="/Account/Login?ReturnUrl=@Model?.ReturnUrl">Back to login</a>
+</p>

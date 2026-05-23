@@ -10,7 +10,10 @@ namespace Application.Interfaces
         IBaseRepository<Client> ClientRepository { get; }
         IBaseRepository<Manager> ManagerRepository { get; }
         IBaseRepository<Area> AreaRepository { get; }
-        //IBaseRepository<Order> OrderRepository { get; }
+        IBaseRepository<Product> ProductRepository { get; }
+        IBaseRepository<Inventory> InventoryRepository { get; }
+        IBaseRepository<User> UserRepository { get; }
+        IBaseRepository<Visit> VisitRepository { get; }
 
         Task<int> SaveChangesAsync();
     }

@@ -1,4 +1,4 @@
-using Application.DTOs.ClientDTO;
+using Application.DTOs.InventoryDTO;
 using Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -6,13 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 namespace Presentation.Controllers
 {
     [Authorize]
-    public class ClientController : Controller
+    public class InventoryController : Controller
     {
-        private readonly IClientService _clientService;
+        private readonly IInventoryService _inventoryService;
 
-        public ClientController(IClientService clientService)
+        public InventoryController(IInventoryService inventoryService)
         {
-            _clientService = clientService;
+            _inventoryService = inventoryService;
         }
 
         public IActionResult Index()
@@ -20,24 +20,19 @@ namespace Presentation.Controllers
             return View();
         }
 
-        public IActionResult GetClients()
-        {
-            return View();
-        }
-
-        public IActionResult AddClient()
+        public IActionResult AddInventory()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddClient(ClientAddRequest request)
+        public async Task<IActionResult> AddInventory(InventoryAddRequest request)
         {
             if (!ModelState.IsValid)
                 return View(request);
 
-            await _clientService.AddClientAsync(request);
+            await _inventoryService.AddInventoryAsync(request);
             return RedirectToAction(nameof(Index));
         }
     }

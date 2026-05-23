@@ -1,0 +1,23 @@
+@model Application.DTOs.AreaDTO.AreaAddRequest
+
+@{
+    ViewData["Title"] = "Add Area";
+}
+
+<h1>Add Area</h1>
+
+<form method="post" action="/Area/AddArea">
+    @Html.AntiForgeryToken()
+
+    <div>
+        <label for="Name">Name</label>
+        <input id="Name" name="Name" value="@Model?.Name" />
+    </div>
+
+    <div>
+        <label for="Description">Description</label>
+        <textarea id="Description" name="Description">@Model?.Description</textarea>
+    </div>
+
+    <button type="submit">Save</button>
+</form>

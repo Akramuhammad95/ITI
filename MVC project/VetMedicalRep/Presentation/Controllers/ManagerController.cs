@@ -1,4 +1,4 @@
-using Application.DTOs.ClientDTO;
+using Application.DTOs.ManagerDTO;
 using Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -6,13 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 namespace Presentation.Controllers
 {
     [Authorize]
-    public class ClientController : Controller
+    public class ManagerController : Controller
     {
-        private readonly IClientService _clientService;
+        private readonly IManagerService _managerService;
 
-        public ClientController(IClientService clientService)
+        public ManagerController(IManagerService managerService)
         {
-            _clientService = clientService;
+            _managerService = managerService;
         }
 
         public IActionResult Index()
@@ -20,24 +20,19 @@ namespace Presentation.Controllers
             return View();
         }
 
-        public IActionResult GetClients()
-        {
-            return View();
-        }
-
-        public IActionResult AddClient()
+        public IActionResult AddManager()
         {
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddClient(ClientAddRequest request)
+        public async Task<IActionResult> AddManager(ManagerAddRequest request)
         {
             if (!ModelState.IsValid)
                 return View(request);
 
-            await _clientService.AddClientAsync(request);
+            await _managerService.AddManagerAsync(request);
             return RedirectToAction(nameof(Index));
         }
     }

@@ -1,0 +1,23 @@
+@model Application.DTOs.ManagerDTO.ManagerAddRequest
+
+@{
+    ViewData["Title"] = "Add Manager";
+}
+
+<h1>Add Manager</h1>
+
+<form method="post" action="/Manager/AddManager">
+    @Html.AntiForgeryToken()
+
+    <div>
+        <label for="Name">Name</label>
+        <input id="Name" name="Name" value="@Model?.Name" />
+    </div>
+
+    <div>
+        <label for="Email">Email</label>
+        <input id="Email" name="Email" type="email" value="@Model?.Email" />
+    </div>
+
+    <button type="submit">Save</button>
+</form>

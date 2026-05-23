@@ -28,7 +28,6 @@ namespace Infrastructure
 
             services.AddScoped<ICacheService, RedisCacheService>();
 
-            // 👇 هنا بقى المهم
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 
             // If you want caching, register CachedRepository manually or enable Scrutor and use Decorate

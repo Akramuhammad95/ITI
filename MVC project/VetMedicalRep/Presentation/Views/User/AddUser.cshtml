@@ -1,0 +1,28 @@
+@model Application.DTOs.UserDTO.UserAddRequest
+
+@{
+    ViewData["Title"] = "Add User";
+}
+
+<h1>Add User</h1>
+
+<form method="post" action="/User/AddUser">
+    @Html.AntiForgeryToken()
+
+    <div>
+        <label for="FullName">Full Name</label>
+        <input id="FullName" name="FullName" value="@Model?.FullName" />
+    </div>
+
+    <div>
+        <label for="Email">Email</label>
+        <input id="Email" name="Email" type="email" value="@Model?.Email" />
+    </div>
+
+    <div>
+        <label for="PasswordHash">Password Hash</label>
+        <input id="PasswordHash" name="PasswordHash" value="@Model?.PasswordHash" />
+    </div>
+
+    <button type="submit">Save</button>
+</form>

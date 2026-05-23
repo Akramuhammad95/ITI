@@ -55,8 +55,14 @@ namespace Infrastructure
             modelBuilder.Entity<Product>().ToTable("Products");
 
             modelBuilder.Entity<Inventory>().ToTable("Inventories");
+            modelBuilder.Entity<Inventory>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+            });
 
             modelBuilder.Entity<Visit>().ToTable("Visits");
+
+            modelBuilder.Entity<User>().ToTable("MedicalRepUsers");
         }
     }
 }

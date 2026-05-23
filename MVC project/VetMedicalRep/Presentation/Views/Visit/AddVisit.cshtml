@@ -1,0 +1,33 @@
+@model Application.DTOs.VisitDTO.VisitAddRequest
+
+@{
+    ViewData["Title"] = "Add Visit";
+}
+
+<h1>Add Visit</h1>
+
+<form method="post" action="/Visit/AddVisit">
+    @Html.AntiForgeryToken()
+
+    <div>
+        <label for="ClientId">Client Id</label>
+        <input id="ClientId" name="ClientId" value="@Model?.ClientId" />
+    </div>
+
+    <div>
+        <label for="UserId">User Id</label>
+        <input id="UserId" name="UserId" value="@Model?.UserId" />
+    </div>
+
+    <div>
+        <label for="VisitDate">Visit Date</label>
+        <input id="VisitDate" name="VisitDate" type="datetime-local" value="@Model?.VisitDate.ToString("yyyy-MM-ddTHH:mm")" />
+    </div>
+
+    <div>
+        <label for="Notes">Notes</label>
+        <textarea id="Notes" name="Notes">@Model?.Notes</textarea>
+    </div>
+
+    <button type="submit">Save</button>
+</form>

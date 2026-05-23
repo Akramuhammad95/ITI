@@ -1,1 +1,24 @@
 ﻿
+@model Application.DTOs.ClientDTO.ClientAddRequest
+
+@{
+    ViewData["Title"] = "Add Client";
+}
+
+<h1>Add Client</h1>
+
+<form method="post" action="/Client/AddClient">
+    @Html.AntiForgeryToken()
+
+    <div>
+        <label for="Name">Name</label>
+        <input id="Name" name="Name" value="@Model?.Name" />
+    </div>
+
+    <div>
+        <label for="Address">Address</label>
+        <input id="Address" name="Address" value="@Model?.Address" />
+    </div>
+
+    <button type="submit">Save</button>
+</form>

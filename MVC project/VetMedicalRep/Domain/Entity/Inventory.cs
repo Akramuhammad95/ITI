@@ -31,6 +31,7 @@ public class Inventory
         LastRestockedAt = DateTime.UtcNow;
     }
 
+    public Guid Id { get; private set; }
     public Guid ProductId { get; private set; }
     public Product? Product { get; private set; }
 
