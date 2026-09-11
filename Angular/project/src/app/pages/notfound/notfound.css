@@ -1,0 +1,20 @@
+.not-found{
+    height:80vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.not-found h1{
+    font-size:120px;
+    margin:0;
+}
+
+.not-found a{
+    text-decoration:none;
+    padding:10px 20px;
+    background:#2563eb;
+    color:white;
+    border-radius:8px;
+}

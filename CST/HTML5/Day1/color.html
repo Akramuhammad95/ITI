@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RGB Slider Text Color</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      margin-top: 50px;
+    }
+
+    input[type="range"] {
+      width: 300px;
+      margin: 10px 0;
+    }
+
+    label {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    #outputText {
+      font-size: 30px;
+      font-weight: bold;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <div>
+    <label for="red">Red:</label>
+    <input type="range" id="red" min="0" max="100" step="1" value="50">
+  </div>
+
+  <div>
+    <label for="green">Green:</label>
+    <input type="range" id="green" min="0" max="100" step="1" value="50">
+  </div>
+
+  <div>
+    <label for="blue">Blue:</label>
+    <input type="range" id="blue" min="0" max="100" step="1" value="50">
+  </div>
+
+  <p id="outputText">This is the output text that changes color based on the sliders.</p>
+  <script src="script.js"></script>
+</body>
+</html>

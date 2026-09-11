@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Text Box with Color Change</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #06918A, #66a6ff);
+    }
+
+    .text-box {
+      background-color: #ffffff;
+      color: #333333;
+      padding: 25px 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      font-size: 1.3rem;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.3s ease; 
+    }
+
+    /* Hover effect */
+    .text-box:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+    }
+
+    /* Active / Pressed effect */
+    .text-box:active {
+      background-color: #764ba2; 
+      color: #ffffff;           
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      transform: translateY(2px); 
+    }
+  </style>
+</head>
+<body>
+
+  <div class="text-box">
+   Click here
+  </div>
+
+</body>
+</html>

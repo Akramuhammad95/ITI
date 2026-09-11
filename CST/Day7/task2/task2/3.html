@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      
+    </style>
+  </head>
+  <body>
+    <pre>
+      -Difference Between Keydown and Keypress
+      -Prevent all Combinations ex Ctrl + any key, Alt + any key, Shift + any key
+</pre
+    >
+
+    <script>
+    
+      document.addEventListener("keypress", (event) => {
+          if (event.ctrlKey || event.altKey || event.shiftKey) {
+            console.log(
+              `KeyPress: ${event.key} with Ctrl: ${event.ctrlKey}, Alt: ${event.altKey}, Shift: ${event.shiftKey}`,
+          );
+          } else {
+          console.log(`KeyPress: ${event.key} with no modifier keys`);
+          }
+        });
+      document.addEventListener("keydown", (e) => {
+        console.log(e.key)
+        if (
+          (e.ctrlKey || e.altKey || e.shiftKey) &&
+          !["Control", "Shift", "Alt"].includes(e.key)
+        ) {
+          e.preventDefault();
+        }
+      });
+    </script>
+  </body>
+</html>

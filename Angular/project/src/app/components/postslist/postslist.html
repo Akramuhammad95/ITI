@@ -1,0 +1,21 @@
+<section class="posts-section">
+
+    <div class="header">
+
+        <h2>Featured Posts</h2>
+
+    </div>
+
+    <div class="posts-grid">
+
+        @for(post of posts; track post.id){
+
+            <app-postcard
+            [post]="post">
+            </app-postcard>
+
+        }
+
+    </div>
+
+</section>

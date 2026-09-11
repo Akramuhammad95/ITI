@@ -1,0 +1,7 @@
+Using bootstrap or tailwind make a responsive e-commerce :
+1- login page
+2- home page (5 sections)
+3- products page or menu ===> cards with add to cart button (store products in localstorage)
+4- cart => display all products that you added 
+
+28/3/2026

@@ -1,0 +1,24 @@
+/* mobile-first  */
+
+.container-div{
+    display: flex;
+    justify-content: space-between;
+    /* flex-direction: column; */
+}
+
+/* tablet */
+/* @media (min-width:768px) and (max-width:991px){ */
+/* .container-div{
+    flex-direction: row;
+}
+} */
+
+
+/* laptop */
+/* @media(min-width : 992px)  {
+.container-div{
+    background-color: aqua;
+    flex-direction: row;
+}
+} */
+

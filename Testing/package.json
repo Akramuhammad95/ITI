@@ -1,0 +1,20 @@
+{
+  "name": "testing",
+  "version": "1.0.0",
+  "description": "Jasmine test setup for lab exercises",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "keywords": [
+    "jasmine",
+    "testing",
+    "unit-tests"
+  ],
+  "author": "Akram",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^6.2.2",
+    "jasmine": "^5.1.0"
+  }
+}

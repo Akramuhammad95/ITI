@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CSS Pacman</title>
+
+<style>
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(65, 129, 127);
+}
+
+/* Pacman container */
+.pacman {
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+/* Pacman shape using borders */
+.pacman::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 50px solid yellow;
+  border-left: 50px solid yellow;
+  border-bottom: 50px solid yellow;
+  border-right: 50px solid transparent;
+  border-radius: 50px;
+  animation: mouth 0.3s infinite alternate;
+}
+
+/* Optional movement */
+.wrapper {
+  animation: move 3s linear infinite;
+}
+
+/* Mouth animation */
+@keyframes mouth {
+  from {
+    border-right: 50px solid transparent;
+  }
+  to {
+    border-right: 50px solid yellow;
+  }
+}
+
+/* Movement animation (optional) */
+@keyframes move {
+  from {
+    transform: translateX(-150px);
+  }
+  to {
+    transform: translateX(150px);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+  <div class="pacman"></div>
+</div>
+
+</body>
+</html>

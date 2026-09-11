@@ -1,0 +1,19 @@
+﻿@using Dplomty.PL.ViewModel.User
+@model CreateAccountVM
+
+<form asp-action="Register" asp-controller="Auth" method="post">
+
+    <label asp-for="UserName"></label>
+    <input type="text" asp-for="UserName" />
+
+    <label asp-for="Email"></label>
+    <input type="text" asp-for="Email" />
+
+    <label asp-for="Password"></label>
+    <input type="text" asp-for="Password" />
+
+    <label asp-for="PhoneNumber"></label>
+    <input type="number" asp-for="PhoneNumber" />
+
+    <button type="submit"> Create Account</button>
+</form>

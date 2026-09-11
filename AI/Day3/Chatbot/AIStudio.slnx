@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/AIStudio.Business/AIStudio.Business.csproj" />
+    <Project Path="src/AIStudio.Data/AIStudio.Data.csproj" />
+    <Project Path="src/AIStudio.Models/AIStudio.Models.csproj" />
+    <Project Path="src/AIStudio.Web/AIStudio.Web.csproj" />
+  </Folder>
+</Solution>

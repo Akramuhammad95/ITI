@@ -1,0 +1,14 @@
+div{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    /* grid-template-columns: 100px 300px 100px; */
+}
+
+.nav{
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+.about{
+    grid-column-start: 1;
+    grid-column-end: 3;
+}

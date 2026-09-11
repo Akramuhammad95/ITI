@@ -11,7 +11,7 @@ namespace Day4
             #region Search and sort
             var employees = new List<Employee>
         {
-            new Employee("Ali", new DateTime(2022, 1, 15)),
+            new Employee("zAli", new DateTime(2022, 1, 15)),
             new Employee("Akram", new DateTime(2023, 5, 1)),
             new Employee("Ziad", new DateTime(2024, 3, 10))
         };
@@ -21,7 +21,7 @@ namespace Day4
             employees.ForEach(e => Console.WriteLine(e));
 
             ISorter<Employee> sorter = new BubbleSorter<Employee>();
-            sorter.Sort(employees, new EmployeeHireDateComparer());
+            sorter.Sort(employees, new EmployeeNameComparer());
 
             Console.WriteLine("\nAfter Sorting by HireDate:");
             employees.ForEach(e => Console.WriteLine(e));

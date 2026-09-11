@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "AI Customer Service";
+}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">Customer Service Assistant</h2>
+
+    @if (ViewBag.Question != null)
+    {
+        <div class="d-flex justify-content-end mb-3">
+            <div class="bg-primary text-white p-3 rounded" style="max-width:70%;">
+                @ViewBag.Question
+            </div>
+        </div>
+    }
+
+    @if (ViewBag.Answer != null)
+    {
+        <div class="d-flex justify-content-start mb-4">
+            <div class="bg-light border p-3 rounded" style="max-width:70%;">
+                @ViewBag.Answer
+            </div>
+        </div>
+    }
+
+    <form asp-action="SendQuestion"
+          asp-controller="Home"
+          method="post">
+
+        <div class="input-group">
+
+            <input type="text"
+                   name="question"
+                   class="form-control"
+                   placeholder="Ask a question..." />
+
+            <button class="btn btn-success"
+                    type="submit">
+                Send
+            </button>
+
+        </div>
+
+    </form>
+
+</div>

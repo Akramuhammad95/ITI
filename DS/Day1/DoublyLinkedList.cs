@@ -76,12 +76,12 @@ namespace Day1
         public bool Contains(T item) => Search(item) != null;
 
         // Delete specific item
-        public void Delete(T item) //o(n)
+        public bool Delete(T item) //o(n)
         {
             Node<T> current = Search(item);
 
             if (current == null)
-                return ;
+                return false ;
 
             // Delete head
             if (current == head)
@@ -107,13 +107,14 @@ namespace Day1
             }
 
             count--;
+            return true;
         }
 
         // Remove first node
-        public void RemoveFirst() //(1)
+        public bool RemoveFirst() //(1)
         {
             if (IsEmpty())
-                return ;
+                return false ;
 
             if (head == tail)
                 head = tail = null;
@@ -124,13 +125,14 @@ namespace Day1
             }
 
             count--;
+            return true;
         }
 
         // Remove last node
-        public void RemoveLast() //(1)
+        public bool RemoveLast() //(1)
         {
             if (IsEmpty())
-                return;
+                return true;
 
             if (head == tail)
                 head = tail = null;
@@ -141,6 +143,7 @@ namespace Day1
             }
 
             count--;
+            return false;
         }
 
         // Print list

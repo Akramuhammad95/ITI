@@ -13,9 +13,13 @@ namespace Day1
         public void Push(T data) => AddLast(data);
         public T Pop()
         {
+            if (IsEmpty())
+                throw new InvalidOperationException("Stack is empty");
+
+            T data = GetTailData;
             RemoveLast();
-            return GetTailData;
-        }//lifo
+            return data;
+        }
         public T Peak => GetTailData;
         
         

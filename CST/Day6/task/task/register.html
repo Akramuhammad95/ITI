@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      form {
+        display: flex;
+        flex-direction: column;
+        background-color: darkgray;
+        width: 30%;
+        margin: auto;
+        
+      }
+      label {
+        margin-top: 7px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" >
+      <form action="welcome.html" method="GET" >
+        <label for="nameInput">Name</label>
+        <input
+          id="nameInput"
+          type="text"
+          placeholder="Enter your name"
+          name="name"
+        />
+
+        <label for="emailInput">Email</label>
+        <input
+          id="emailInput"
+          type="email"
+          placeholder="Enter your email"
+          name="email"
+        />
+
+        <label for="passwordInput">Password</label>
+        <input
+          id="passwordInput"
+          type="password"
+          placeholder="Enter your password"
+          name="password"
+        />
+
+        <label for="jobTitleInput">Job Title</label>
+        <input
+          id="jobTitleInput"
+          type="text"
+          placeholder="Enter your job title"
+          name="jobTitle"
+        />
+
+        <label for="mobileInput">Mobile</label>
+        <input
+          id="mobileInput"
+          type="tel"
+          placeholder="Enter your mobile number"
+          name="mobile"
+        />
+
+        <label>Gender</label>
+        <div class="gender">
+          <input type="radio" name="gender" value="male" /> Male
+          <input type="radio" name="gender" value="female" /> Female
+        </div>
+
+        <label for="addressInput">Address</label>
+        <textarea
+          id="addressInput"
+          rows="3"
+          placeholder="Enter your address"
+          name="address"
+        ></textarea>
+
+        <center><button type="submit" style="width: 25%; background-color: brown; border-radius: 5px; border-color: black;">Register</button></center>
+      </form>
+    </div>
+  </body>
+</html>

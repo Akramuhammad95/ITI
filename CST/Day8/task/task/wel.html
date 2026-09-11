@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome</title>
+    <style>
+      body {
+        text-align: center;
+        margin-top: 100px;
+        font-family: Arial;
+      }
+      img {
+        width: 150px;
+        height: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="CookiesLibrary.js"></script>
+    <script>
+      try {
+      
+        if (!hasCookie("name")) {
+          throw new Error("No user data found. Please register first.");
+        }
+
+        let name = getCookie("name");
+        let age = getCookie("age");
+        let gender = getCookie("gender");
+        let color = getCookie("color");
+
+        let visits = getCookie("visits");
+        visits = visits ? parseInt(visits) + 1 : 1;
+
+        let expiryDate = new Date();
+        expiryDate.setDate(expiryDate.getDate() + 7);
+        setCookie("visits", visits.toString(), expiryDate);
+
+        let imgSrc = gender === "male" ? "/1.jpg" : "/2.jpg";
+
+        document.body.innerHTML = `
+          <h2 style="color:${color}">
+            Welcome ${name}
+          </h2>
+          <p>Age: ${age}</p>
+          <img src="${imgSrc}">
+          <p>You visited this site <strong style="color:${color}">${visits}</strong> times</p>
+          <hr>
+   
+        `;
+      } catch (error) {
+        alert(error.message);
+        location.assign("index.html");
+      }
+    </script>
+  </body>
+</html>

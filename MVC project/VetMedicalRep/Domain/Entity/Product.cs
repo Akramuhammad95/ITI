@@ -18,5 +18,8 @@ namespace Domain.Entities
             Discription = discription?.Trim();
             CategoryId = categoryId;
         }
+
+        // many-to-many: product can appear on multiple visits
+        public ICollection<VisitProduct> VisitProducts { get; private set; } = new List<VisitProduct>();
     }
 }

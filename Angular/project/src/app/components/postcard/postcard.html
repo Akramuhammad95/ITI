@@ -1,0 +1,28 @@
+<div class="post-card">
+
+    <img [src]="post.image" [alt]="post.title">
+
+    <div class="post-content" appHoverCard>
+
+        <span
+            [appCategoryColor]="post.category">
+
+            {{post.category}}
+
+        </span>
+
+        <h3>
+            {{post.title}}
+        </h3>
+
+        <p>
+            {{post.description}}
+        </p>
+
+        <a href="#">
+            Read More →
+        </a>
+
+    </div>
+
+</div>

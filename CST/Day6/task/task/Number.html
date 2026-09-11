@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <button class="btn" onclick="SendValue(1)" value="1">1</button>
+      <button class="btn" onclick="SendValue(2)" value="2">2</button>
+      <button class="btn" onclick="SendValue(3)" value="3">3</button>
+      <button class="btn" onclick="SendValue(4)" value="4">4</button>
+      <button class="btn" onclick="SendValue(5)" value="5">5</button>
+      <button class="btn" onclick="SendValue(6)" value="6">6</button>
+      <button class="btn" onclick="SendValue(7)" value="7">7</button>
+      <button class="btn" onclick="SendValue(8)" value="8">8</button>
+      <button class="btn" onclick="SendValue(9)" value="9">9</button>
+      <input type="text" id="display" />
+      <button class="btn" onclick="clearInput()" value="C">C</button>
+      <button class="btn" onclick="popelement()" value="<"><<</button>
+    </div>
+    <script>
+      function SendValue(value) {
+        const display = document.getElementById("display");
+        display.value += value;
+      }
+
+      function clearInput() {
+        const display = document.getElementById("display");
+        display.value = "";
+      }
+
+      function popelement() {
+        const display = document.getElementById("display");
+        display.value = display.value.slice(0, -1);
+      }
+    </script>
+  </body>
+</html>

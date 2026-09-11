@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Typing a Message</h2>
+    <hr />
+    <button id="showMessageBtn" onclick="displayMessage()">
+      Show My Message
+    </button>
+    <script>
+      let message = prompt("Enter your message:");
+      function displayMessage() {
+        if (!message) return;
+        let win = open("", "_blank", "width=400,height=200");
+        win.document.write(`
+              <div id="text" style="color: blue;font-family: Arial; font-size: 18px; padding: 20px;"></div>
+        `);
+        let i = 0;
+        let interval = setInterval(() => {
+          if (i < message.length) {
+            win.document.getElementById("text").textContent += message[i];
+            i++;
+          } else {
+            clearInterval(interval);
+            setTimeout(() => {
+              win.close();
+            }, 3000);
+          }
+        }, 100);
+      }
+    </script>
+  </body>
+</html>

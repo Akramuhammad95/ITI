@@ -1,0 +1,97 @@
+<form
+  [formGroup]="registerForm"
+  (ngSubmit)="register()"
+  class="form">
+
+  <h2>Create Account</h2>
+
+  <input
+    type="text"
+    placeholder="Name"
+    formControlName="name">
+
+  @if(registerForm.get('name')?.touched &&
+      registerForm.get('name')?.invalid){
+
+    <small class="error">
+      Name is required
+    </small>
+
+  }
+
+  <input
+    type="email"
+    placeholder="Email"
+    formControlName="email">
+
+  @if(registerForm.get('email')?.touched &&
+      registerForm.get('email')?.invalid){
+
+    <small class="error">
+
+      @if(registerForm.get('email')?.errors?.['required']){
+        Email is required
+      }
+
+      @if(registerForm.get('email')?.errors?.['email']){
+        Invalid Email Format
+      }
+
+    </small>
+
+  }
+
+  <input
+    type="password"
+    placeholder="Password"
+    formControlName="password">
+
+  @if(registerForm.get('password')?.touched &&
+      registerForm.get('password')?.invalid){
+
+    <small class="error">
+
+      @if(registerForm.get('password')?.errors?.['required']){
+        Password is required
+      }
+
+      @if(registerForm.get('password')?.errors?.['minlength']){
+        Password must be at least 6 characters
+      }
+
+    </small>
+
+  }
+
+  <input
+    type="password"
+    placeholder="Confirm Password"
+    formControlName="confirmPassword">
+
+  @if(registerForm.get('confirmPassword')?.touched &&
+      registerForm.get('confirmPassword')?.invalid){
+
+    <small class="error">
+      Confirm Password is required
+    </small>
+
+  }
+
+  @if(registerForm.errors?.['passwordMismatch']
+      && registerForm.get('confirmPassword')?.touched){
+
+    <small class="error">
+      Passwords do not match
+    </small>
+
+  }
+
+  <button
+    type="submit"
+    [disabled]="registerForm.invalid">
+
+    Register
+
+  </button>
+
+</form>

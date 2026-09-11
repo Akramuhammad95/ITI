@@ -1,0 +1,272 @@
+<div class="page">
+
+  <!-- Background -->
+
+  <div class="bg-grid"></div>
+  <div class="glow glow1"></div>
+  <div class="glow glow2"></div>
+
+  <!-- Navbar -->
+
+  <nav class="navbar">
+
+    <div class="logo">
+
+      <div class="logo-icon">
+        D
+      </div>
+
+      <span>DevCore</span>
+
+    </div>
+
+    <div class="nav-links">
+
+      <a href="#">Home</a>
+      <a href="#">Articles</a>
+      <a href="#">AI</a>
+      <a href="#">Backend</a>
+      <a href="#">Angular</a>
+
+    </div>
+
+    <button class="nav-btn">
+      Login
+    </button>
+
+  </nav>
+
+  <!-- Hero -->
+
+  <section class="hero">
+
+    <div class="hero-left">
+
+      <div class="mini-badge">
+        #1 Developer Platform
+      </div>
+
+      <h1>
+        Discover the
+        future of
+        <span>software engineering</span>
+      </h1>
+
+      <p>
+        Read world-class content about Angular,
+        backend systems, AI engineering,
+        cloud infrastructure and scalable architecture.
+      </p>
+
+      <div class="hero-actions">
+
+        <button class="primary-btn">
+          Start Reading
+        </button>
+
+        <button class="secondary-btn">
+          Explore Topics
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- Floating Card -->
+
+    <div class="floating-card">
+
+      <div class="card-top">
+
+        <span class="tag">
+          TRENDING
+        </span>
+
+        <span class="time">
+          8 min read
+        </span>
+
+      </div>
+
+      <h3>
+        Building scalable AI systems with .NET and Angular
+      </h3>
+
+      <p>
+        Learn modern architecture using APIs,
+        vector databases and distributed systems.
+      </p>
+
+      <div class="author">
+
+        <div class="avatar"></div>
+
+        <div>
+          <h4>Akram</h4>
+          <small>Senior Developer</small>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Stats -->
+
+  <section class="stats">
+
+    <div class="stat-box">
+      <h2>50K+</h2>
+      <p>Developers</p>
+    </div>
+
+    <div class="stat-box">
+      <h2>12K+</h2>
+      <p>Articles</p>
+    </div>
+
+    <div class="stat-box">
+      <h2>320+</h2>
+      <p>Topics</p>
+    </div>
+
+    <div class="stat-box">
+      <h2>99%</h2>
+      <p>Engagement</p>
+    </div>
+
+  </section>
+
+  <!-- Categories -->
+
+  <section class="categories-section">
+
+    <div class="section-header">
+
+      <h2>Trending Categories</h2>
+
+      <span>Explore technologies</span>
+
+    </div>
+
+    <div class="categories">
+
+      <div class="category-card">Angular</div>
+      <div class="category-card">.NET</div>
+      <div class="category-card">AI Systems</div>
+      <div class="category-card">Cloud</div>
+      <div class="category-card">Microservices</div>
+      <div class="category-card">System Design</div>
+
+    </div>
+
+  </section>
+
+  <!-- Articles -->
+
+  <div class="section-header">
+
+    <h2>Popular Articles</h2>
+
+    <span>Updated daily</span>
+
+  </div>
+
+  <section class="cards">
+
+    <div class="card" *ngFor="let post of posts">
+
+      <img [src]="post.image">
+
+      <div class="card-overlay"></div>
+
+      <div class="card-content">
+
+        <span class="card-category">
+          Angular
+        </span>
+
+        <h3>
+          {{post.title}}
+        </h3>
+
+        <p>
+          {{post.description}}
+        </p>
+
+        <div class="card-bottom">
+
+          <div class="mini-author">
+
+            <div class="mini-avatar"></div>
+
+            <span>
+              Akram
+            </span>
+
+          </div>
+
+          <button>
+            Read
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Newsletter -->
+
+  <section class="newsletter">
+
+    <h2>
+      Join the developer community
+    </h2>
+
+    <p>
+      Get weekly articles about software engineering,
+      AI and backend architecture.
+    </p>
+
+    <div class="newsletter-box">
+
+      <input
+        type="text"
+        placeholder="Enter your email"
+      >
+
+      <button>
+        Subscribe
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+
+  <footer class="footer">
+
+    <div>
+      <h3>DevCore</h3>
+      <p>
+        Modern developer platform for engineers.
+      </p>
+    </div>
+
+    <div class="footer-links">
+
+      <a href="#">About</a>
+      <a href="#">Careers</a>
+      <a href="#">Privacy</a>
+      <a href="#">Contact</a>
+
+    </div>
+
+  </footer>
+
+</div>

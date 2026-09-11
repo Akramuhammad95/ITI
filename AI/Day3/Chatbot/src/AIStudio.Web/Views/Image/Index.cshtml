@@ -1,0 +1,82 @@
+@model ImageGeneratorViewModel
+@{
+    ViewData["Title"] = "Image Generator";
+}
+
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+    <h1 class="h3 mb-0">Image Generator</h1>
+    <span class="limit-pill"><span id="usedToday">@Model.UsedToday</span>/@Model.DailyLimit today</span>
+</div>
+
+<div class="app-panel p-3 p-md-4 mb-4">
+    <form id="imageForm" class="row g-2 align-items-start">
+        @Html.AntiForgeryToken()
+        <div class="col-md">
+            <textarea id="promptInput" name="prompt" class="form-control" rows="3" maxlength="2000" placeholder="Describe the image..."></textarea>
+        </div>
+        <div class="col-md-auto">
+            <button id="generateButton" class="btn btn-primary w-100" type="submit">Generate</button>
+        </div>
+    </form>
+    <div id="imageError" class="text-danger mt-2"></div>
+</div>
+
+<div id="imageGrid" class="row g-3">
+    @foreach (var image in Model.Images)
+    {
+        <div class="col-sm-6 col-lg-4">
+            <div class="app-panel image-card overflow-hidden">
+                <img src="@image.ImageUrl" alt="@image.Prompt" />
+                <div class="p-3">
+                    <div class="fw-semibold">@image.Prompt</div>
+                    <div class="text-muted small">@image.CreatedAtUtc.ToLocalTime().ToString("g")</div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        $("#imageForm").on("submit", function (event) {
+            event.preventDefault();
+            const input = $("#promptInput");
+            const prompt = input.val().trim();
+            if (!prompt) return;
+
+            $("#generateButton").prop("disabled", true).text("Generating...");
+            $("#imageError").text("");
+
+            $.ajax({
+                url: "@Url.Action("Generate", "Image")",
+                method: "POST",
+                data: {
+                    __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(),
+                    prompt
+                }
+            }).done(function (result) {
+                if (!result.success) {
+                    $("#imageError").text(result.error || "Could not generate image.");
+                    return;
+                }
+
+                const card = $("<div>").addClass("col-sm-6 col-lg-4").append(
+                    $("<div>").addClass("app-panel image-card overflow-hidden").append(
+                        $("<img>").attr("src", result.image.imageUrl).attr("alt", result.image.prompt),
+                        $("<div>").addClass("p-3").append(
+                            $("<div>").addClass("fw-semibold").text(result.image.prompt),
+                            $("<div>").addClass("text-muted small").text(new Date(result.image.createdAtUtc).toLocaleString())
+                        )
+                    )
+                );
+                $("#imageGrid").prepend(card);
+                $("#usedToday").text(result.usedToday);
+                input.val("");
+            }).fail(function () {
+                $("#imageError").text("Request failed.");
+            }).always(function () {
+                $("#generateButton").prop("disabled", false).text("Generate");
+            });
+        });
+    </script>
+}

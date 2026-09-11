@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Assistant</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+</head>
+<body>
+
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-title">Mode</div>
+      <div class="mode-tabs">
+        <button class="mode-btn active" id="btnChat" onclick="setMode('chat')">
+          <i class="ti ti-message-circle"></i> Chat
+        </button>
+        <button class="mode-btn" id="btnImage" onclick="setMode('image')">
+          <i class="ti ti-sparkles"></i> Image
+        </button>
+      </div>
+    </div>
+
+    <div class="history-label">
+      History
+      <button class="clear-btn" onclick="clearHistory()">Clear all</button>
+    </div>
+
+    <div class="history-list" id="historyList">
+      <div class="empty-hist" id="emptyHist">
+        <i class="ti ti-history"></i>
+        Your conversations will appear here
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <div class="topbar">
+      <div class="topbar-title">
+        <div class="status-dot"></div>
+        AI Assistant
+      </div>
+      <div class="topbar-mode">
+        <span id="modePill" class="mode-pill chat">Chat</span>
+      </div>
+    </div>
+
+    <div class="chat-pane" id="chatPane">
+      <div class="welcome" id="welcomeMsg">
+        <div class="welcome-icon"><i class="ti ti-robot"></i></div>
+        <h3>Hello! How can I help?</h3>
+        <p>Switch between Chat mode and Image mode using the sidebar.</p>
+      </div>
+    </div>
+
+    <div class="input-area">
+      <div class="input-row">
+        <div class="input-wrap">
+          <input id="prompt" placeholder="Type a message..." autocomplete="off" />
+        </div>
+        <button class="send-btn" id="sendBtn" onclick="handleSend()">
+          <i class="ti ti-send"></i>
+        </button>
+      </div>
+      <div class="input-hint" id="inputHint">Chat mode — ask me anything</div>
+    </div>
+
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

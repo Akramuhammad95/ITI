@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      body {
+        margin: 0;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      table {
+        background: #fff;
+        padding: 25px 30px;
+        border-radius: 12px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        border-collapse: separate;
+        border-spacing: 15px;
+        min-width: 350px;
+      }
+
+      label {
+        font-weight: bold;
+        color: #333;
+      }
+
+      input[type="text"],
+      input[type="number"],
+      input[type="color"] {
+        width: 100%;
+        padding: 8px 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        outline: none;
+        transition: border 0.3s;
+      }
+
+      input[type="text"]:focus,
+      input[type="number"]:focus {
+        border-color: #667eea;
+      }
+
+      img {
+        width: 90px;
+        height: 90px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 3px solid #ddd;
+        transition: transform 0.3s, border-color 0.3s;
+      }
+
+      img:hover {
+        transform: scale(1.05);
+        border-color: #667eea;
+      }
+
+      input[type="radio"] {
+        margin-top: 10px;
+      }
+
+      .btnSubmit {
+        text-align: center;
+      }
+
+      button {
+        background: #667eea;
+        color: #fff;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 25px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.2s;
+      }
+
+      button:hover {
+        background: #5a67d8;
+        transform: translateY(-2px);
+      }
+
+      button:active {
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+
+  <body>
+    <table>
+      <tr>
+        <td><label for="name">Enter your name:</label></td>
+        <td><input type="text" id="name" name="name" /></td>
+      </tr>
+
+      <tr>
+        <td><label for="age">Enter your age:</label></td>
+        <td><input type="number" id="age" name="age" /></td>
+      </tr>
+
+      <tr>
+        <td>
+          <label for="gender">Select your gender:</label><br /><br />
+          <img src="/1.jpg" /><br />
+          <input type="radio" name="gender" value="male" id="male" />
+        </td>
+        <td>
+          <br /><br />
+          <img src="/2.jpg" /><br />
+          <input type="radio" name="gender" value="female" id="female" />
+        </td>
+      </tr>
+
+      <tr>
+        <td><label for="color">Select your favorite color:</label></td>
+        <td><input type="color" id="color" name="color" /></td>
+      </tr>
+
+      <tr>
+        <td colspan="2" class="btnSubmit">
+          <button type="submit">Register</button>
+        </td>
+      </tr>
+    </table>
+
+    <script src="CookiesLibrary.js"></script>
+    <script>
+      document.querySelector("button").addEventListener("click", function (e) {
+        try {
+          let nameInput = document.getElementById("name").value;
+          let ageInput = document.getElementById("age").value;
+          let genderInput = document.querySelector(
+            'input[name="gender"]:checked'
+          ).value;
+          let colorInput = document.getElementById("color").value;
+
+          if (!nameInput || !ageInput || !genderInput || !colorInput) {
+            alert("Please fill all fields");
+            return;
+          }
+
+          let expiryDate = new Date();
+          expiryDate.setDate(expiryDate.getDate() + 7);
+
+          setCookie("name", nameInput, expiryDate);
+          setCookie("age", ageInput, expiryDate);
+          setCookie("gender", genderInput, expiryDate);
+          setCookie("color", colorInput, expiryDate);
+
+          location.assign("wel.html");
+        } catch (error) {
+          alert(error.message);
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="../../../../../../OneDrive/Desktop/ITI/MVC/Application/Application.csproj" />
+  <Project Path="../../../../../../OneDrive/Desktop/ITI/MVC/Domain/Domain.csproj" />
+  <Project Path="../../../../../../OneDrive/Desktop/ITI/MVC/Presentation/Presentation.csproj" />
+  <Project Path="../../../../../../OneDrive/Desktop/ITI/MVC/VetMedicalRepTests/VetMedicalRepTests.csproj" />
+</Solution>

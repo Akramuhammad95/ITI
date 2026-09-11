@@ -10,7 +10,5 @@ namespace Day4
             if (y == null) return 1;
             return x.id.CompareTo(y.id);
         }
-
-
     }
 }

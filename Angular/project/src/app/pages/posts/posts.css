@@ -1,0 +1,14 @@
+.posts-page{
+    padding:40px 80px;
+}
+
+.posts-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.posts-header h1{
+    margin:0;
+}

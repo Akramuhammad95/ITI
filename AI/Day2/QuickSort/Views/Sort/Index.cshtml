@@ -1,0 +1,40 @@
+@model QuickSort.ViewModels.SortViewModel
+
+@{
+    ViewData["Title"] = "QuickSort Demo";
+}
+
+<div class="container mt-4">
+    <h1>QuickSort Demo</h1>
+    <form asp-action="Index" method="post" novalidate>
+        <div class="mb-3">
+            <label asp-for="Numbers" class="form-label"></label>
+            <input asp-for="Numbers" class="form-control" />
+            <span asp-validation-for="Numbers" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Algorithm</label>
+            <select asp-for="Algorithm" class="form-select">
+                <option value="recursive">Recursive QuickSort</option>
+                <option value="iterative">Iterative QuickSort</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Sort</button>
+    </form>
+
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger mt-3">@Model.ErrorMessage</div>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.Sorted))
+    {
+        <div class="mt-3">
+            <h5>Sorted Output</h5>
+            <pre>@Model.Sorted</pre>
+            <p>Elapsed: @Model.ElapsedMilliseconds ms</p>
+        </div>
+    }
+</div>

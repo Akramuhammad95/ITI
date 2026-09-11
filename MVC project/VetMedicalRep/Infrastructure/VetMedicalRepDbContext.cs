@@ -11,6 +11,7 @@ namespace Infrastructure
         public DbSet<Manager> Managers { get; set; }
         public DbSet<Area> Areas { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<VisitProduct> VisitProducts { get; set; }
         public DbSet<Inventory> Inventories { get; set; }
         public DbSet<Visit> Visits { get; set; }
 
@@ -53,6 +54,11 @@ namespace Infrastructure
             });
 
             modelBuilder.Entity<Product>().ToTable("Products");
+            modelBuilder.Entity<Product>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.HasMany(e => e.VisitProducts).WithOne(vp => vp.Product).HasForeignKey(vp => vp.ProductId);
+            });
 
             modelBuilder.Entity<Inventory>().ToTable("Inventories");
             modelBuilder.Entity<Inventory>(entity =>
@@ -61,6 +67,20 @@ namespace Infrastructure
             });
 
             modelBuilder.Entity<Visit>().ToTable("Visits");
+            modelBuilder.Entity<Visit>(entity =>
+            {
+                entity.Property(e => e.Location).IsRequired().HasMaxLength(200);
+                entity.HasMany(e => e.VisitProducts).WithOne(vp => vp.Visit).HasForeignKey(vp => vp.VisitId);
+            });
+
+            modelBuilder.Entity<VisitProduct>().ToTable("VisitProducts");
+            modelBuilder.Entity<VisitProduct>(entity =>
+            {
+                entity.HasKey(e => new { e.VisitId, e.ProductId });
+                entity.Property(e => e.Quantity).IsRequired();
+                entity.HasOne(vp => vp.Visit).WithMany(v => v.VisitProducts).HasForeignKey(vp => vp.VisitId);
+                entity.HasOne(vp => vp.Product).WithMany(p => p.VisitProducts).HasForeignKey(vp => vp.ProductId);
+            });
 
             modelBuilder.Entity<User>().ToTable("MedicalRepUsers");
         }

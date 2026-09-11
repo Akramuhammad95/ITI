@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace Presentation.Controllers
 {
     [Authorize]
-    public class VisitController : Controller
+    [ApiController]
+    [Route("api/[controller]")]
+    public class VisitController : ControllerBase
     {
         private readonly IVisitService _visitService;
 
@@ -15,25 +17,12 @@ namespace Presentation.Controllers
             _visitService = visitService;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult AddVisit()
-        {
-            return View();
-        }
-
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddVisit(VisitAddRequest request)
+        public async Task<IActionResult> AddVisit([FromBody] VisitAddRequest request)
         {
-            if (!ModelState.IsValid)
-                return View(request);
-
+            if (!ModelState.IsValid) return BadRequest(ModelState);
             await _visitService.AddVisitAsync(request);
-            return RedirectToAction(nameof(Index));
+            return Ok();
         }
     }
 }

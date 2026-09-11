@@ -1,0 +1,11 @@
+<div class="posts-grid">
+
+  @for(post of posts; track post.id){
+
+    <app-postcard
+      [post]="post">
+    </app-postcard>
+
+  }
+
+</div>

@@ -18,6 +18,7 @@
 		</PackageReference>
 
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -27,7 +28,17 @@
 
 	<ItemGroup>
 		<Folder Include="ViewModels\" />
+		<Folder Include="Views\Account\" />
+		<Folder Include="Views\Area\" />
+		<Folder Include="Views\Client\" />
+		<Folder Include="Views\Home\" />
+		<Folder Include="Views\Inventory\" />
+		<Folder Include="Views\Manager\" />
 		<Folder Include="Views\NewFolder\" />
+		<Folder Include="Views\Product\" />
+		<Folder Include="Views\Shared\" />
+		<Folder Include="Views\User\" />
+		<Folder Include="Views\Visit\" />
 	</ItemGroup>
 
 </Project>

@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  backend:
+    image: myapp-backend:1.0
+    container_name: api_backend
+    ports:
+      - "5000:8080"
+    depends_on:
+      - db
+    environment:
+    - ASPNETCORE_ENVIRONMENT=Development
+    - ConnectionStrings__DefaultConnection=Server=db,1433;Database=MyAppDb;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True;Encrypt=False
+    networks:
+      - app_network
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sql_server_db
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=YourStrong@Passw0rd
+      - MSSQL_PID=Developer
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql_data:/var/opt/mssql
+    networks:
+      - app_network
+
+volumes:
+  sql_data:
+
+networks:
+  app_network:
+    driver: bridge

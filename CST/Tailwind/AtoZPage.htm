@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>A to Z Academy</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Montserrat',sans-serif;
+}
+
+.glow{
+box-shadow:0 0 25px rgba(0,117,175,.6);
+}
+
+.course-card:hover{
+transform:translateY(-8px);
+transition:.3s;
+}
+
+</style>
+
+</head>
+
+<body class="bg-gray-950 text-white">
+
+<!-- NAVBAR -->
+
+<nav class="fixed w-full backdrop-blur bg-black/40 z-50">
+
+<div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+<div class="flex items-center gap-3">
+
+<img src="Main Logo Dark (Transparent).png" class="w-10">
+
+<h1 class="font-bold text-lg">A to Z Academy</h1>
+
+</div>
+
+<div class="hidden md:flex gap-8 text-gray-300">
+
+<a href="#" class="hover:text-white">Home</a>
+<a href="#courses" class="hover:text-white">Courses</a>
+<a href="#contact" class="hover:text-white">Contact</a>
+
+</div>
+
+</div>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="min-h-screen flex items-center justify-center text-center px-6
+bg-gradient-to-br from-[#0075AF] via-[#06918A] to-[#0075AF] ">
+
+<div class="max-w-4xl">
+
+<img src="Main Logo Dark (Transparent).png" class="w-40 mx-auto mb-8 glow p-2 border border-yellow-400 ">
+
+<h1 class="text-5xl md:text-6xl font-bold leading-tight">
+
+A to Z Academy
+
+</h1>
+
+<p class="mt-6 text-lg text-white/90">
+
+Driven by Tech, Led by Minds
+
+</p>
+
+<div class="mt-10 flex justify-center gap-4 flex-wrap">
+
+<button class="px-7 py-3 border border-yellow-400 rounded-xl hover:bg-white hover:text-black transition">
+
+Start Learning
+
+</button>
+
+<button class="px-7 py-3 border border-yellow-400 rounded-xl hover:bg-white hover:text-black transition">
+
+View Courses
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- COURSES -->
+
+<section id="courses" class="py-24 bg-white/10">
+
+<div class="max-w-7xl mx-auto px-6">
+
+<h2 class="text-4xl font-bold text-center mb-16">
+
+Popular Courses
+
+</h2>
+
+<div class="grid md:grid-cols-3 gap-10">
+
+<!-- CARD -->
+
+<div class="course-card bg-gray-900 rounded-2xl overflow-hidden shadow-lg">
+
+<img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97">
+
+<div class="p-6">
+
+<h3 class="text-xl font-bold mb-2">.NET Development</h3>
+
+<p class="text-gray-400 text-sm mb-4">
+
+Learn backend development using C# and ASP.NET.
+
+</p>
+
+<div class="flex justify-between items-center">
+
+<span class="text-yellow-400 font-bold">2500 EGP</span>
+
+<button class="px-4 py-2 bg-[#0075AF] rounded-lg">
+
+Enroll
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- CARD -->
+
+<div class="course-card bg-gray-900 rounded-2xl overflow-hidden shadow-lg">
+
+<img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085">
+
+<div class="p-6">
+
+<h3 class="text-xl font-bold mb-2">Web Development</h3>
+
+<p class="text-gray-400 text-sm mb-4">
+
+HTML, CSS, JavaScript and modern frameworks.
+
+</p>
+
+<div class="flex justify-between items-center">
+
+<span class="text-yellow-400 font-bold">2500 EGP</span>
+
+<button class="px-4 py-2 bg-[#0075AF] rounded-lg">
+
+Enroll
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- CARD -->
+
+<div class="course-card bg-gray-900 rounded-2xl overflow-hidden shadow-lg">
+
+<img src="https://images.unsplash.com/photo-1509228627152-72ae9ae6848d">
+
+<div class="p-6">
+
+<h3 class="text-xl font-bold mb-2">Data Structures</h3>
+
+<p class="text-gray-400 text-sm mb-4">
+
+Master algorithms and problem solving.
+
+</p>
+
+<div class="flex justify-between items-center">
+
+<span class="text-yellow-400 font-bold">1500 EGP</span>
+
+<button class="px-4 py-2 bg-[#0075AF] rounded-lg">
+
+Enroll
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact" class="py-24
+bg-gradient-to-r from-[#0075AF] to-[#06918A]">
+
+<div class="max-w-4xl mx-auto px-6 text-center">
+
+<h2 class="text-4xl font-bold mb-6">
+
+Join A to Z Academy
+
+</h2>
+
+<p class="mb-10 text-white/90">
+
+Start your journey in tech today
+
+</p>
+
+<div class="flex justify-center gap-4 flex-wrap">
+
+<input
+placeholder="Your Email"
+class="px-5 py-3 rounded-xl text-black w-72">
+
+<button class="px-6 py-3 bg-[#FFC200] text-black rounded-xl font-bold">
+
+Join Now
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="py-8 text-center text-gray-400 bg-white/10">
+
+© 2026 A to Z Academy
+
+</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<!-- <link rel="stylesheet" href="./style.css"/> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+<!-- responsive  -->
+<!-- <div class="container-div">
+    <h1>Hello</h1>
+    <h1>Hello</h1>
+    <h1>Hello</h1>
+</div> -->
+
+<h1>&#128507; Hello</h1>
+
+    <!-- classes  -->
+    <!-- text [color - align - font style - transform - font weight  ] -->
+    <!-- cssproperty-value -->
+    <!-- <h1 class="text-danger text-center fs-3 text-uppercase fw-bold fst-italic bg-dark">Hello</h1> -->
+    <!-- colors  -->
+    <!-- container vs container fluid  -->
+    <!-- <h1 class="container text-danger text-end fs-3 text-uppercase fw-bold fst-italic bg-dark">Hello</h1> -->
+    <!-- <h1 class="container-fluid text-danger text-end fs-3 text-uppercase fw-bold fst-italic bg-dark">Hello</h1> -->
+
+    <!-- task create a heading and change style using bootstrap -->
+    <!-- spacing [1-5 p-number | m-number | mt ==? top or mb ==> bottom  ms==> left me ==> rigth ] -->
+    <!-- <h1 class="text-danger text-end fs-3 text-uppercase fw-bold fst-italic bg-dark p-2 ms-3 me-3 ">Hello</h1> -->
+    <!-- <h1 class="text-danger text-end fs-3 text-uppercase fw-bold fst-italic bg-dark p-2 mx-3">Hello</h1> -->
+    <!-- <h1 class="text-danger text-end fs-3 text-uppercase fw-bold fst-italic bg-dark p-2 my-3">Hello</h1> -->
+
+    <!-- flex - justify-content-[between | around | start | end | center] - gap ===>x -->
+    <!-- flex - align items -->
+<!-- <div class="d-flex justify-content-end gap-4 flex-column" >
+    <h1 class="bg-dark text-success">Hello</h1>
+    <h1 class="bg-dark text-success">Hello</h1>
+    <h1 class="bg-dark text-success">Hello</h1>
+</div> -->
+
+<!-- grid  -->
+<!-- <div class="row bg-dark">
+    <h1 class="text-success col-1">Hello</h1>
+    <h1 class="text-success col-1">Hello</h1>
+    <h1 class="text-success col-1">Hello</h1>
+
+    <h1 class="text-success col-1">Hello</h1>
+    <h1 class="text-success col-1">Hello</h1>
+    <h1 class="text-success col-1">Hello</h1>
+
+    <h1 class="text-success col-1">Hello</h1>
+    <h1 class="text-success col-1">Hello</h1>
+    <h1 class="text-success col-1">Hello</h1>
+
+    <h1 class="text-success col-1">Hello</h1>
+    <h1 class="text-success col-1">Hello</h1>
+    <h1 class="text-success col-1">Hello</h1>
+</div> -->
+
+<!-- <div class="container-fluid">
+    <div class="row bg-dark">
+    <h1 class="text-success col-3">Hello</h1>
+    <h1 class="text-success col-3">Hello</h1>
+    <h1 class="text-success col-3">Hello</h1>
+    <h1 class="text-success col-3">Hello</h1>
+</div>
+</div>
+<div class="row">
+<h1 class="col-8">Hello</h1>
+<h1 class="col-6">Hello</h1>
+</div> -->
+<!-- btn  -->
+<!-- <button class="btn btn-warning">Click here</button>
+<button class="btn btn-danger">Click here</button>
+<button class="btn btn-success">Click here</button>
+<button class="btn btn-info">Click here</button> -->
+
+<!-- card  -->
+<!-- <div class="d-flex justify-content-center gap-5">
+    <div class="card" style="width: 18rem;">
+  <img src="/headerCover.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Shop title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+    <a href="#" class="btn btn-danger">See more details</a>
+  </div>
+</div>
+<div class="card" style="width: 18rem;">
+  <img src="/headerCover.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Shop title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+    <a href="#" class="btn btn-danger">See more details</a>
+  </div>
+</div>
+<div class="card" style="width: 18rem;">
+  <img src="/headerCover.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Shop title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+    <a href="#" class="btn btn-danger">See more details</a>
+  </div>
+</div>
+<div class="card" style="width: 18rem;">
+  <img src="/headerCover.jpg" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Shop title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+    <a href="#" class="btn btn-danger">See more details</a>
+  </div>
+</div>
+
+</div> -->
+
+<!-- <div id="carouselExampleCaptions" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="./headerCover.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>First slide label</h5>
+        <p>Some representative placeholder content for the first slide.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="./headerCover.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Second slide label</h5>
+        <p>Some representative placeholder content for the second slide.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="./headerCover.jpg" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Third slide label</h5>
+        <p>Some representative placeholder content for the third slide.</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div> -->
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+ see more details
+</button> -->
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates deserunt modi, impedit tempore expedita voluptate laudantium qui distinctio, neque non totam aspernatur quod consequuntur explicabo quisquam aliquid, recusandae pariatur quas!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<!-- <nav class="navbar navbar-expand-lg bg-warning">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse " id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About Us</a>
+        </li>
+           <li class="nav-item">
+          <a class="btn btn-success" href="#">Join Us</a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav> -->
+
+<!-- <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>John</td>
+      <td>Doe</td>
+      <td>@social</td>
+    </tr>
+  </tbody>
+</table> -->
+
+<!-- <div id="liveAlertPlaceholder"></div>
+<button type="button" class="btn btn-primary" id="liveAlertBtn">Show live alert</button> -->
+
+<!-- <div class="accordion accordion-flush" id="accordionFlushExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+        Accordion Item #1
+      </button>
+    </h2>
+    <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item’s accordion body.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+        Accordion Item #2
+      </button>
+    </h2>
+    <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item’s accordion body. Let’s imagine this being filled with some actual content.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+        Accordion Item #3
+      </button>
+    </h2>
+    <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item’s accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+    </div>
+  </div>
+</div> -->
+
+
+<!-- <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button> -->
+
+<!-- <div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <img src="..." class="rounded me-2" alt="...">
+      <strong class="me-auto">Bootstrap</strong>
+      <small>11 mins ago</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      Hello, world! This is a toast message.
+    </div>
+  </div>
+</div> -->
+
+<!-- 
+<script>
+    const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+const appendAlert = (message, type) => {
+  const wrapper = document.createElement('div')
+  wrapper.innerHTML = [
+    `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+    `   <div>${message}</div>`,
+    '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+    '</div>'
+  ].join('')
+
+  alertPlaceholder.append(wrapper)
+}
+
+const alertTrigger = document.getElementById('liveAlertBtn')
+if (alertTrigger) {
+  alertTrigger.addEventListener('click', () => {
+    appendAlert('error , this data is not avaiable!', 'warning')
+  })
+}
+
+// toast 
+const toastTrigger = document.getElementById('liveToastBtn')
+const toastLiveExample = document.getElementById('liveToast')
+
+if (toastTrigger) {
+  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+  toastTrigger.addEventListener('click', () => {
+    toastBootstrap.show()
+  })
+}
+</script> -->
+
+
+<!-- break points  -->
+
+<!-- cssproperty-screen(md-lg)-value  -->
+<!-- <div class="d-flex justify-content-center gap-4 flex-column flex-md-row flex-lg-column" >
+    <h1 class="bg-dark text-success">Hello</h1>
+    <h1 class="bg-dark text-success">Hello</h1>
+    <h1 class="bg-dark text-success">Hello</h1>
+</div> -->
+<!-- <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav> -->
+
+
+<i class="fa-brands fa-facebook-messenger"></i>
+</body>
+</html>

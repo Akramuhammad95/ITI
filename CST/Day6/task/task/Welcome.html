@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="result" style="padding-left: 10px"></div>
+    <img
+      src="/TaskResources/gigachad.jpg"
+      id="gigachad"
+      alt="Gigachad"
+      style="display: none; width: 200px; height: auto; margin-top: 20px"
+    />
+    <img
+      src="/TaskResources/monaliza.jpg"
+      alt=""
+      id="monaliza"
+      alt="monaliza"
+      style="display: none; width: 200px; height: auto; margin-top: 20px"
+    />
+    <div id="browserMsg"></div>
+
+    <script>
+
+      const obj = {};
+
+      location.search
+        .substring(1)
+        .split("&")
+        .forEach((item) => {
+          const [key, value] = item.split("=");
+          obj[key] = decodeURIComponent(value.replace(/\+/g, " "));
+        });
+
+      // Display user info
+      const result = document.getElementById("result");
+
+      result.innerHTML = `
+      <h2>Welcome ${obj.name}!</h2>
+      <p><strong>Job Title:</strong> ${obj.jobTitle}</p>
+      <p><strong>Email:</strong> ${obj.email}</p>
+      <p><strong>Mobile:</strong> ${obj.mobile}</p>
+      <p><strong>Gender:</strong> ${obj.gender}</p>
+      <p><strong>Address:</strong> ${obj.address}</p>
+      `;
+      //image display
+      if (obj.gender === "male") {
+        document.getElementById("gigachad").style.display = "block";
+      } else if (obj.gender === "female") {
+        document.getElementById("monaliza").style.display = "block";
+      }
+
+      // Check browser and recommend Chrome
+      const msgDiv = document.getElementById("browserMsg");
+      const userAgent = navigator.userAgent.toLowerCase();
+
+      // Check if NOT Chrome
+      if (!userAgent.includes("chrome") || userAgent.includes("edg")) {
+        msgDiv.innerHTML = `
+    <p>
+      For best experience, please use Google Chrome browser.
+    </p>
+  `;
+      }
+    </script>
+  </body>
+</html>

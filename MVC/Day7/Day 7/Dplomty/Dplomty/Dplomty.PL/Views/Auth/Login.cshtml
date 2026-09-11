@@ -1,0 +1,15 @@
+﻿@using Dplomty.PL.ViewModel.User
+@model LoginVM
+
+<form asp-action="Login" asp-controller="Auth" method="post">
+
+    <label asp-for="UserName"></label>
+    <input type="text" asp-for="UserName" />
+
+
+    <label asp-for="Password"></label>
+    <input type="text" asp-for="Password" />
+
+
+    <button type="submit">Login</button>
+</form>

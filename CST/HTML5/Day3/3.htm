@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A To Z Academy</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* Reset */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Alexandria', sans-serif;
+}
+
+/* Background Tech Style */
+body{
+  background: linear-gradient(135deg,#0075AF,#06918A);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+}
+/* Container */
+.container{
+  width:95%;
+  max-width:550px;
+}
+
+/* Form Card */
+form{
+  background:#FFFFFF;
+  padding:50px;
+  border-radius:25px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.25);
+  text-align:center;
+}
+
+/* Logo Tech Effect */
+.logo{
+  width:280px;
+  height:280px;
+  border-radius:50%;
+  object-fit:cover;
+  border:6px solid #e0e5e4;
+  margin-bottom:25px;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+  cursor:pointer;
+
+  transition: all 0.7s ease;
+  box-shadow: 0 0 15px rgba(6,145,138,0.3);
+}
+
+/* Tech Hover Effect */
+.logo:hover{
+  opacity:0.5   ;
+  transform:scale(0.85) rotate(3deg);
+  box-shadow: 0 0 35px rgba(6,145,138,0.6);
+}
+
+/* Title */
+h2{
+  margin-bottom:25px;
+  color:#0075AF;
+  font-weight:700;
+  font-size:28px;
+}
+
+/* Inputs */
+input{
+  width:100%;
+  padding:16px;
+  margin:15px 0;
+  border-radius:12px;
+  border:2px solid #ddd;
+  outline:none;
+  transition:0.3s;
+  font-size:16px;
+}
+
+/* Validation */
+input:invalid{
+  border-color:#c43800;
+}
+
+input:valid{
+  border-color:#06918A;
+}
+
+/* Button */
+button{
+  margin-top:20px;
+  width:100%;
+  padding:16px;
+  border:none;
+  border-radius:35px;
+  background-color:#06918A;
+  color:#FFFFFF;
+  font-weight:600;
+  font-size:18px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  background-color:#FFC200;
+  color:#000;
+}
+
+/* Error Message */
+p{
+  color:#C48700;
+  font-size:14px;
+  display:none;
+  text-align:left;
+}
+
+input:invalid + p{
+  display:block;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<form>
+
+  <img 
+    src="MAIN LOGO LIGHT (SOLID).png" 
+    alt="Academy Logo" 
+    class="logo">
+
+  <h2>A to Z Academy</h2>
+
+  <input 
+    type="text" 
+    placeholder="Enter Your Name"
+    pattern="[A-Za-z\u0600-\u06FF\s]+"
+    required>
+  <p>Name must contain letters only</p>
+
+  <input type="email" placeholder="Enter Your Email" required>
+  <p>Please enter valid email</p>
+
+  <input type="password" placeholder="Enter Password" minlength="6" required>
+  <p>Password must be at least 6 characters</p>
+
+  <button type="submit">Register</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

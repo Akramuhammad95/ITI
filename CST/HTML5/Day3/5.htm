@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+  background:#ddd;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  font-family: "Times New Roman", serif;
+}
+
+.card{
+  width:180px;
+  height:320px;
+  background:white;
+  border:4px solid red;
+  border-radius:25px;
+  position:relative;
+  padding:15px;
+  box-sizing:border-box;
+}
+
+.top-left{
+  position:absolute;
+  top:15px;
+  left:15px;
+  font-size:28px;
+  font-weight:bold;
+}
+
+.bottom-right{
+  position:absolute;
+  bottom:15px;
+  right:15px;
+  font-size:28px;
+  font-weight:bold;
+}
+
+.spade{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  font-size:90px;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="top-left">A</div>
+  <div class="spade">♠</div>
+  <div class="bottom-right">A</div>
+</div>
+
+</body>
+</html>

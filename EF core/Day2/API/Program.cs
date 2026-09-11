@@ -1,3 +1,4 @@
+using API.Middlewares;
 using Application.Interfaces;
 using Application.Services;
 using Infrastructure;
@@ -28,6 +29,11 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+
+app.UseMiddleware<ProfilingMiddleware>();
+app.UseMiddleware<RateLimitingMiddleware>();
+
 
 app.MapControllers();
 

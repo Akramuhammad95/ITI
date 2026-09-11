@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style></style>
+  </head>
+  <body>
+    <center>
+    <div class="container">
+      <div class="marbles">
+        <img src="/TaskResources/marbels/marble1.jpg" alt="Marble 1" />
+        <img src="/TaskResources/marbels/marble1.jpg" alt="Marble 1" />
+        <img src="/TaskResources/marbels/marble1.jpg" alt="Marble 1" />
+        <img src="/TaskResources/marbels/marble1.jpg" alt="Marble 1" />
+        <img src="/TaskResources/marbels/marble1.jpg" alt="Marble 1" />
+      </div>
+    </div>
+    </center>
+    <script>
+      const marbles = document.querySelectorAll(".marbles img");
+
+      const dark = "/TaskResources/marbels/marble1.jpg";
+      const light = "/TaskResources/marbels/marble3.jpg";
+
+      let current = 0;
+      let interval;
+
+      function start() {
+        interval = setInterval(() => {
+          const isHovering = Array.from(marbles).some((m) =>
+            m.matches(":hover"),
+          );
+          if (isHovering) return;
+
+          marbles.forEach((m) => (m.src = dark));
+
+          marbles[current].src = light;
+
+          current = (current + 1) % marbles.length;
+        }, 800);
+      }
+
+      function stop() {
+        clearInterval(interval);
+      }
+
+      start();
+    </script>
+  </body>
+</html>

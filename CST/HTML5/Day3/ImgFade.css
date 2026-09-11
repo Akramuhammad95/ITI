@@ -1,0 +1,8 @@
+fade-img {
+      width: 300px;                 
+      transition: opacity 1s ease;  
+    }
+
+    .fade-img:hover {
+      opacity: 0;                  
+    }

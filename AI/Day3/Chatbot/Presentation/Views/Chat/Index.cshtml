@@ -1,0 +1,70 @@
+﻿@model List<Presentation.Models.ChatMessage>
+
+@{
+    ViewData["Title"] = "ChatBot";
+}
+
+<div class="container mt-4">
+
+    <h2 class="mb-3">💬 ChatBot</h2>
+
+    <!-- Chat Box -->
+    <div id="messages" class="border rounded p-3 mb-3"
+         style="height:400px; overflow-y:auto; background:#f8f9fa;">
+
+        @foreach (var item in Model)
+        {
+            <div class="mb-3">
+                <div class="alert alert-primary p-2">
+                    <strong>You:</strong> @item.UserMessage
+                </div>
+
+                <div class="alert alert-secondary p-2">
+                    <strong>Bot:</strong> @item.BotResponse
+                </div>
+            </div>
+        }
+
+    </div>
+
+    <!-- Input -->
+    <textarea id="message"
+              class="form-control"
+              rows="3"
+              placeholder="Type your message..."></textarea>
+
+    <button id="sendBtn"
+            class="btn btn-primary mt-3 w-100">
+        Send
+    </button>
+</div>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script>
+    $("#sendBtn").click(function () {
+
+        var msg = $("#message").val();
+
+        if (!msg) return;
+
+        $.post("/Chat/Send", { message: msg }, function (data) {
+
+            $("#messages").prepend(`
+                <div class="mb-3">
+                    <div class="alert alert-primary p-2">
+                        <strong>You:</strong> ${data.userMessage}
+                    </div>
+
+                    <div class="alert alert-secondary p-2">
+                        <strong>Bot:</strong> ${data.botResponse}
+                    </div>
+                </div>
+            `);
+
+            $("#message").val("");
+        });
+
+    });
+</script>

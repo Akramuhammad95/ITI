@@ -1,0 +1,74 @@
+@model ChatViewModel
+@{
+    ViewData["Title"] = "Chat";
+}
+
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+    <h1 class="h3 mb-0">Chat</h1>
+    <span class="limit-pill"><span id="usedToday">@Model.UsedToday</span>/@Model.DailyLimit today</span>
+</div>
+
+<div class="app-panel p-3 p-md-4">
+    <div id="chatFeed" class="chat-feed mb-3">
+        @foreach (var item in Model.Messages)
+        {
+            <div class="chat-turn">
+                <div class="message-label">You</div>
+                <div class="mb-3">@item.UserMessage</div>
+                <div class="message-label">AI</div>
+                <div class="ai-response">@item.AiResponse</div>
+            </div>
+        }
+    </div>
+    <form id="chatForm" class="d-flex gap-2">
+        @Html.AntiForgeryToken()
+        <input id="messageInput" name="message" class="form-control" maxlength="4000" placeholder="Ask something..." autocomplete="off" />
+        <button id="sendButton" class="btn btn-primary" type="submit">Send</button>
+    </form>
+    <div id="chatError" class="text-danger mt-2"></div>
+</div>
+
+@section Scripts {
+    <script>
+        const chatFeed = $("#chatFeed");
+        chatFeed.scrollTop(chatFeed[0].scrollHeight);
+
+        $("#chatForm").on("submit", function (event) {
+            event.preventDefault();
+            const input = $("#messageInput");
+            const message = input.val().trim();
+            if (!message) return;
+
+            $("#sendButton").prop("disabled", true).text("Sending...");
+            $("#chatError").text("");
+
+            $.ajax({
+                url: "@Url.Action("Send", "Chat")",
+                method: "POST",
+                data: {
+                    __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(),
+                    message
+                }
+            }).done(function (result) {
+                if (!result.success) {
+                    $("#chatError").text(result.error || "Could not send message.");
+                    return;
+                }
+
+                const turn = $("<div>").addClass("chat-turn");
+                turn.append($("<div>").addClass("message-label").text("You"));
+                turn.append($("<div>").addClass("mb-3").text(result.message.userMessage));
+                turn.append($("<div>").addClass("message-label").text("AI"));
+                turn.append($("<div>").addClass("ai-response").text(result.message.aiResponse));
+                chatFeed.append(turn);
+                $("#usedToday").text(result.usedToday);
+                input.val("");
+                chatFeed.scrollTop(chatFeed[0].scrollHeight);
+            }).fail(function () {
+                $("#chatError").text("Request failed.");
+            }).always(function () {
+                $("#sendButton").prop("disabled", false).text("Send");
+            });
+        });
+    </script>
+}
